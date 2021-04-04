@@ -1,0 +1,31 @@
+@import 'themes';
+
+.open-button-acciones {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+.col-form-label.required::after {
+    content: ' *';
+    color: nb-theme(color-danger);;
+}
+.col-form-label {
+    color: nb-theme(header-bg);
+}
+
+.label-with-link {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forgot-password {
+    color: nb-theme(text-disabled-color);
+}
+.text-link{
+    color: nb-theme(text-hint-color);
+}
+
+nb-card {
+    width: 25rem;
+    margin: auto;
+}

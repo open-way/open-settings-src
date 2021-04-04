@@ -1,0 +1,72 @@
+<nb-card status="primary" [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        CONTACTO |
+      </span>
+      <span class="font-weight-light" i18n>
+        Guardar o actualizar contacto.
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <form [formGroup]="personaTelefonoForm">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tipo_telefono_id" i18n class="label required">
+                Tipo de telefono</label>
+              <!-- <div> -->
+              <nb-select size="small" fullWidth formControlName="tipo_telefono_id" id="tipo_telefono_id">
+                <nb-option [value]="''" disabled>
+                  Seleccionar
+                </nb-option>
+                <nb-option *ngFor="let item of tipoTelefonos" [value]="item.tipo_telefono_id">
+                  {{ item.nombre }}
+                </nb-option>
+              </nb-select>
+              <!-- </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="num_telefono" i18n class="label required">Número
+              </label>
+              <input type="text" formControlName="num_telefono" fieldSize="small" nbInput fullWidth name="num_telefono"
+                id="num_telefono" placeholder="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <nb-toggle status="success" formControlName="es_privado">Es privado</nb-toggle>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <nb-toggle status="success" formControlName="activo">Activo</nb-toggle>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cerrar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+
+  </nb-card-footer>
+</nb-card>

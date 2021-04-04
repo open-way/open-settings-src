@@ -1,0 +1,15 @@
+@import 'themes';
+
+.lamb-buttons {
+  button {
+    margin-right: 0.3rem;
+  }
+}
+
+::ng-deep nb-dialog-container {
+  width: 35rem;
+  .col-md-6 {
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+  }
+}

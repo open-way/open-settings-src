@@ -1,0 +1,136 @@
+<ng-template #nodeTemplateRef let-node>
+  <tr>
+    <td>
+      <!-- {{ (in+1) }} -->
+    </td>
+    <td>
+      {{ node.title }}
+    </td>
+    <td>
+      <span class="fa fa-link es-icon-info"></span>
+      {{ node.link }}
+    </td>
+    <td class="text-center">
+      <span class="fa fa-users es-icon-info"></span>
+      {{ node.order }}
+    </td>
+    <td class="text-center">
+      {{ node.group }}
+    </td>
+    <td class="text-center">
+      {{ node.home }}
+    </td>
+    <td class="text-center">
+      {{ node.icon }}
+    </td>
+    <td class="text-center">
+      <span *ngIf="node.is_mobile">
+        <nb-icon icon="smartphone-outline"></nb-icon>
+        Móbil
+      </span>
+      <span *ngIf="!node.is_mobile">
+        <nb-icon icon="compass-outline"></nb-icon>
+        Web
+      </span>
+    </td>
+    <td class="text-center">
+      {{ node.codigo }}
+    </td>
+    <td class="text-center open-button-end">
+
+      <!-- <button nbButton shape="round" [status]="node.count_accions === 0 ? 'basic':'warning'"
+        style="pointer-events: none!important;" size="small">
+        {{node.count_accions}}
+      </button> -->
+
+      <button nbButton shape="round" [status]="node.count_accions === 0 ? 'basic':'warning'" size="small"
+        nbTooltip="Acciones" (click)="onAcciones(node.modulo_id, node.title)">
+        <nb-icon icon="attach-2-outline"></nb-icon>
+        <!-- Acciones -->
+      </button>
+
+      <button nbButton shape="round" status="primary" size="small" nbTooltip="Editar módulo"
+        (click)="onEditar(node.modulo_id, node.title)">
+        <nb-icon icon="edit-outline"></nb-icon>
+        <!-- Editar -->
+      </button>
+
+      <button nbButton shape="round" status="primary" size="small" nbTooltip="Eliminar módulo"
+        (click)="onDelete(node.modulo_id)">
+        <nb-icon icon="trash-outline"></nb-icon>
+        <!-- Eliminar -->
+      </button>
+
+    </td>
+  </tr>
+  <ng-container *ngIf="node.children && node.children.length > 0">
+    <ng-template ngFor [ngForOf]="node.children" [ngForTemplate]="nodeTemplateRef">
+    </ng-template>
+  </ng-container>
+</ng-template>
+
+
+<nb-card>
+  <nb-card-header>
+
+    <div class="text-center">
+      <span i18n>
+        LISTA |
+      </span>
+      <span class="font-weight-light" i18n>
+        Lista de módulos del sistema en general.
+      </span>
+    </div>
+
+    <div>
+      <!-- <nb-icon icon="calendar-outline"></nb-icon>
+      {{ today }} -->
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="form-group row">
+      <div class="col-md-12 text-right">
+        <button nbButton status="primary" size="small" (click)="onRegistrarNuevo()">
+          <nb-icon icon="plus-outline"></nb-icon>
+          Agregar
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th>N</th>
+                <th>Titulo</th>
+                <th class="text-center">Link</th>
+                <th class="text-center">Órden</th>
+                <th class="text-center">¿Es Grupo?</th>
+                <th class="text-center">¿Es Home?</th>
+                <th class="text-center">Ícono</th>
+                <th class="text-center">Plataforma</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="moduloParents.length > 0; else emptySpace" [nbSpinner]="loadingSpinner"
+              nbSpinnerStatus="info">
+              <ng-container *ngFor="let item of moduloParents; let i=index">
+                <ng-template [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ $implicit: item }">
+                </ng-template>
+              </ng-container>
+            </tbody>
+            <ng-template #emptySpace>
+              <tbody [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                <tr>
+                  <td colspan="6" class="text-center">Sin resultados</td>
+                </tr>
+              </tbody>
+            </ng-template>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

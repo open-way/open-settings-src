@@ -1,0 +1,145 @@
+<div [nbSpinner]="loadingSaveDatosGenerales" nbSpinnerMessage="Guardando datos..." nbSpinnerStatus="primary">
+
+  <form [formGroup]="personaForm">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="nombres" class="col-form-label label text-right required">Nombres</label>
+            <input type="text" formControlName="nombres" nbInput fullWidth fieldSize="small" name="nombres"
+              id="nombres">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ap_paterno" class="col-form-label label text-right required">Ap
+              Paterno</label>
+            <input type="text" formControlName="ap_paterno" nbInput fullWidth fieldSize="small" name="ap_paterno"
+              id="ap_paterno">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ap_materno" class="col-form-label label text-right required">Ap
+              Materno</label>
+            <input type="text" formControlName="ap_materno" nbInput fullWidth fieldSize="small" name="ap_materno"
+              id="ap_materno">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="fecha_nac" class="col-form-label label text-right required">
+              Fech nac</label>
+            <nb-form-field>
+              <input type="text" formControlName="fecha_nac" name="fecha_nac" id="fecha_nac" fullWidth fieldSize="small"
+                nbInput [nbDatepicker]="nfecha">
+              <nb-icon nbSuffix icon="calendar-outline" pack="eva"></nb-icon>
+            </nb-form-field>
+            <nb-datepicker #nfecha></nb-datepicker>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="estado_civil" class="col-form-label label text-right required">E-Civil</label>
+            <nb-select formControlName="estado_civil" placeholder="Estado civil" size="small" fullWidth
+              name="estado_civil" id="estado_civil">
+              <nb-option value="S">Soltero</nb-option>
+              <nb-option value="C">Casado</nb-option>
+              <nb-option value="V">Viudo</nb-option>
+              <nb-option value="D">Divorciado</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ubigeo_pais_id" class="col-form-label label text-right required">
+                          Pais</label>
+                        <nb-select formControlName="ubigeo_pais_id" placeholder="Pais" size="small" fullWidth
+                          name="ubigeo_pais_id" id="ubigeo_pais_id">
+                          <nb-option *ngFor="let item of paises" [value]="item.ubigeo_id">{{ item.nombre }}</nb-option>
+                        </nb-select>
+                      </div>
+                    </div> -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ubigeo_depto_id" class="col-form-label label text-right required">Departamento</label>
+            <nb-select formControlName="ubigeo_depto_id" placeholder="Departamento" size="small" fullWidth
+              name="ubigeo_depto_id" id="ubigeo_depto_id">
+              <nb-option *ngFor="let item of departamentos" [value]="item.ubigeo_id">{{ item.nombre }}
+              </nb-option>
+            </nb-select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ubigeo_pvcia_id" class="col-form-label label text-right required">Provincia</label>
+            <nb-select formControlName="ubigeo_pvcia_id" placeholder="Provincia" size="small" fullWidth
+              name="ubigeo_pvcia_id" id="ubigeo_pvcia_id">
+              <nb-option *ngFor="let item of provincias" [value]="item.ubigeo_id">{{ item.nombre }}
+              </nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ubigeo_ditto_id" class="col-form-label label text-right required">Distrito</label>
+            <nb-select formControlName="ubigeo_ditto_id" placeholder="Distrito" size="small" fullWidth
+              name="ubigeo_ditto_id" id="ubigeo_ditto_id">
+              <nb-option *ngFor="let item of distritos" [value]="item.ubigeo_id">{{ item.nombre }}
+              </nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="group" class="col-form-label label text-right required">Sexo</label>
+            <nb-radio-group formControlName="sexo" name="group" status="warning">
+              <nb-radio [value]="'M'">Masculino</nb-radio>
+              <nb-radio [value]="'F'">Femenino</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="form-group row">
+    <div class="col-md-12 text-right open-button-end">
+      <!-- <button nbButton ghost status="basic" size="small" nbTooltip="Restaurar cambios">
+        <nb-icon icon="undo-outline"></nb-icon>
+        Restaurar
+      </button> -->
+
+      <button nbButton ghost status="primary" size="small" nbTooltip="Guardar cambios" (click)="onDatosGeneralesSave()">
+        <nb-icon icon="save-outline"></nb-icon>
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>

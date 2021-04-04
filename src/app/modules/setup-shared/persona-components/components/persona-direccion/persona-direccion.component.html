@@ -1,0 +1,101 @@
+<!-- <nb-card *ngFor="let item of personaDireccions; let i=index" size="giant"> -->
+<nb-card size="giant">
+  <nb-card-header>
+    <!-- DIRECCIÓN {{ (i+1) }} -->
+    DIRECCIÓN {{ (index+1) }}
+  </nb-card-header>
+  <nb-card-body>
+
+    <form [formGroup]="personaDireccionForm">
+      <div class="container row">
+        <!-- <div class="form-group col-md-6">
+        <label for="ubigeo_pais_id" class="label required">
+          Pais</label>
+        <nb-select [(ngModel)]="item.ubigeo_pais_id" placeholder="Pais" size="small" fullWidth
+                  name="ubigeo_pais_id" id="ubigeo_pais_id">
+                  <nb-option></nb-option>
+                </nb-select>
+      </div> -->
+        <div class="form-group col-md-6">
+          <label for="ubigeo_depto_id" class="label required">Departamento</label>
+          <nb-select formControlName="ubigeo_depto_id" placeholder="Departamento" size="small" fullWidth
+            name="ubigeo_depto_id" id="ubigeo_depto_id">
+            <nb-option *ngFor="let item of departamentos" [value]="item.ubigeo_id">{{ item.nombre }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="ubigeo_pvcia_id" class="label required">Provincia</label>
+          <nb-select formControlName="ubigeo_pvcia_id" placeholder="Provincia" size="small" fullWidth
+            name="ubigeo_pvcia_id" id="ubigeo_pvcia_id">
+            <nb-option *ngFor="let item of provincias" [value]="item.ubigeo_id">{{ item.nombre }}
+            </nb-option>
+          </nb-select>
+        </div>
+      </div>
+
+      <div class="container row">
+        <div class="form-group col-md-6">
+          <label for="ubigeo_ditto_id" class="label required">Distrito</label>
+          <nb-select formControlName="ubigeo_ditto_id" placeholder="Distrito" size="small" fullWidth
+            name="ubigeo_ditto_id" id="ubigeo_ditto_id">
+            <nb-option *ngFor="let item of distritos" [value]="item.ubigeo_id">{{ item.nombre }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="label" style="visibility: hidden">Status</label>
+          <div>
+            <nb-checkbox formControlName="activo" status="warning">Activo</nb-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div class="container row">
+        <div class="form-group col-12">
+          <label for="referencia" class="label">Referencia</label>
+          <input formControlName="referencia" type="text" nbInput fullWidth fieldSize="small" name="referencia"
+            id="referencia">
+        </div>
+        <!-- <div class="form-group col-2">
+        </div> -->
+      </div>
+
+      <div class="container row">
+        <div class="form-group col-8">
+          <nb-form-field>
+            <!-- <input type="text" formControlName="search_map" name="search_map" id="search_map" shape="semi-round" -->
+            <input type="text" name="search_map" id="search_map" shape="semi-round" fullWidth fieldSize="small" nbInput
+              placeholder="Buscar...">
+            <nb-icon nbSuffix icon="search-outline" pack="eva"></nb-icon>
+          </nb-form-field>
+        </div>
+      </div>
+    </form>
+
+    <!-- <div *ngIf="apiLoaded | async"> -->
+    <!-- <google-map [center]="position" [zoom]="8" width="100%" height="63%">
+      <map-marker [position]="position"></map-marker>
+    </google-map> -->
+    <!-- <ng-container *ngIf="options"> -->
+      <google-map [options]="options" (mapClick)="moveMap($event)" width="100%" height="63%">
+        <map-marker [position]="options.center"></map-marker>
+      </google-map>
+    <!-- </ng-container> -->
+
+
+    <!-- </div> -->
+
+  </nb-card-body>
+  <nb-card-footer class="text-right">
+    <button nbButton ghost status="basic" size="small" (click)="onRemovePersonaDireccion()"
+      nbTooltip="Eliminar dirección">
+      <nb-icon icon="trash-outline"></nb-icon>
+      Eliminar
+    </button>
+    <button nbButton ghost status="primary" size="small" (click)="onSavePersonaDireccion()" nbTooltip="Guardar cambios">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+  </nb-card-footer>
+</nb-card>

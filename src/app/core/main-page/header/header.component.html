@@ -1,0 +1,47 @@
+<div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+    <div class="logo-containter">
+        <div class="logo" (click)="goToShellApp()">
+            <img class="black-and-white" src="assets/logos/iasd-logo-black-and-white.svg">
+            <!-- <img class="full-color" src="assets/logos/open-logo-full-color.svg"> -->
+        </div>
+    </div>
+</div>
+
+<div class="center">
+    <div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+        <div class="navigation" (click)="toggleSidebar()">
+            <nb-icon icon="menu-outline"></nb-icon>
+        </div>
+    </div>
+    <nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+        <nb-action class="user-action">
+            <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" nbContextMenuTag="context-menu-profile"
+                [name]="user.full_name" [title]="user.email" [picture]="user.picture"></nb-user>
+        </nb-action>
+        <!-- <nb-action class="control-item">
+            <open-identity-enterprise [onlyId]="userPictureOnly" [id]="enterprise?.entity_id"
+                [name]="enterprise?.entity_name">
+            </open-identity-enterprise>
+        </nb-action>
+        <nb-action class="control-item">
+            <open-identity-enterprise [onlyId]="userPictureOnly" [id]="enterprise?.departament_id"
+                [name]="enterprise?.departament_name">
+            </open-identity-enterprise>
+        </nb-action> -->
+        <!-- <nb-action class="control-item">
+            <open-identity-period [onlyId]="userPictureOnly" [id]="'2019'" [name]="'Año contable'">
+            </open-identity-period>
+        </nb-action>
+        <nb-action class="control-item">
+            <open-identity-enterprise [onlyId]="userPictureOnly" [id]="'Campanas de belén'" [name]="'Almacén'">
+            </open-identity-enterprise>
+        </nb-action> -->
+    </nb-actions>
+</div>
+
+<div class="header-container" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+    <div class="navigation-end" (click)="onLogout()">
+        <!-- <nb-icon icon="log-out-outline"></nb-icon> -->
+        <nb-icon icon="power-outline"></nb-icon>
+    </div>
+</div>

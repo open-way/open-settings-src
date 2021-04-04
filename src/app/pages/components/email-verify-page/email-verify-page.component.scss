@@ -1,0 +1,19 @@
+@import 'themes';
+
+nb-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
+    font-size: 1.75rem;
+    img {
+        height: 8rem;
+        // font-size: 1.75rem;
+        width: 100%;
+    }
+}
+
+.black-and-white {
+
+}

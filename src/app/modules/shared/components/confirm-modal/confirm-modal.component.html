@@ -1,0 +1,23 @@
+<nb-card class="text-center" status="basic">
+    <!-- <nb-card-header>MENSAJE DE CONFIRMACIÓN</nb-card-header> -->
+    <nb-card-header>MENSAJE DE CONFIRMACIÓN</nb-card-header>
+    <nb-card-body>{{ mensaje }}</nb-card-body>
+    <nb-card-footer class="lamb-buttons">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <button nbButton fullWidth status="primary" size="small" (click)="onClose()">
+                        <nb-icon icon="close-outline"></nb-icon>
+                        Cancelar
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button nbButton fullWidth status="primary" size="small" (click)="onAceptar()">
+                        <nb-icon icon="checkmark-outline"></nb-icon>
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>

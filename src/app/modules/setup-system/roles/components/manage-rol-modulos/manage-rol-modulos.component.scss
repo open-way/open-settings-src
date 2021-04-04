@@ -1,0 +1,30 @@
+@import 'themes';
+
+// .es-header-icon{
+//     font-size: 1.1rem;
+//     margin-right: 0.4rem;
+// }
+nb-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+// .es-button {
+//     margin-right: 0.3rem;
+// }
+// .es-button-acciones {
+//     margin-right: 0.3rem;
+// }
+.name-rol {
+    // color: nb-theme(color-primary-800) !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+.open-button-end {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+// .es-icon-info {
+//     color: nb-theme(header-bg);
+// }

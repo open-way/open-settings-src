@@ -1,0 +1,27 @@
+@mixin lamb-table-theme() {
+    .table {
+        color: nb-theme(text-basic-color);
+        thead {
+            th {
+                // border-top: nb-theme(border-basic-color-1);
+            }
+        }
+        tbody {
+            td {
+                border: 1 solid nb-theme(smart-table-paging-border-color);
+            }
+        }
+        &.table-hover {
+            tr:hover {
+                color: nb-theme(text-basic-color);
+            }
+        }
+        &.table-bordered {
+            thead {
+                td {
+                    border: 1 solid nb-theme(smart-table-paging-border-color);
+                }
+            }
+        }
+    }
+}

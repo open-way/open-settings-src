@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="offset-md-2 col-md-8">
+        <nb-card size="medium">
+            <nb-card-body>
+                <br>
+                <div class="icon">
+                    <img class="black-and-white" src="assets/icons/user-desactive.svg">
+                </div>
+                <br>
+                <div class="container">
+                    <div class="text-center">
+                        <h5 i18n>¡Espere!</h5>
+                        <br>
+                        <p i18n>Su usuario fue registrado con éxito. Espere que un administrador active su
+                            cuenta.</p>
+                        <br>
+                        <button nbButton outline status="primary" nbTooltip="Ya me activaron, ir a la página principal."
+                            (click)="goToHome()">
+                            <nb-icon icon="email-outline"></nb-icon>
+                            <span i18n>
+                                Ir a la página principal
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

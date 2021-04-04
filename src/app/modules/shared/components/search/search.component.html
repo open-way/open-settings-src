@@ -1,0 +1,7 @@
+<!-- <nb-icon *ngIf="!isLoading" [options]="fieldSize" icon="search-outline"></nb-icon> -->
+<nb-icon *ngIf="!isLoading" icon="search-outline"></nb-icon>
+<div *ngIf="isLoading" [nbSpinner]="isLoading" nbSpinnerStatus="primary" [nbSpinnerSize]="fieldSize"
+    class="loading-space">
+</div>
+<ng-content>
+</ng-content>

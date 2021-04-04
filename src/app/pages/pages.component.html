@@ -1,0 +1,16 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <open-header-page [position]="(sidebar?.id === 'left' ? 'normal': 'inverse')"></open-header-page>
+    </nb-layout-header>
+
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+    <nb-layout-footer>
+        <span class="open-footer">
+            Copyright © Open way {{ year }}. Todos los derechos son reservados — Implementado por: <a href="#">
+                Devotion</a>
+        </span>
+    </nb-layout-footer>
+</nb-layout>

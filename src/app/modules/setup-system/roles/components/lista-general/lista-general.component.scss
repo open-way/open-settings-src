@@ -1,0 +1,29 @@
+@import 'themes';
+
+nb-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+nb-list-item{
+    display: flex;
+    // cursor: pointer;
+    justify-content: space-between;
+    // border: 1px solid nb-theme(color-basic-400);
+    &:hover {
+        background-color: nb-theme(list-item-divider-color);
+    }
+    // color: nb-theme(color-primary-700) !important;
+    font-weight: bolder;
+    // border-radius: 20px;
+    position: relative;
+}
+
+.open-button-end {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+.es-icon-info {
+    color: nb-theme(header-bg);
+}

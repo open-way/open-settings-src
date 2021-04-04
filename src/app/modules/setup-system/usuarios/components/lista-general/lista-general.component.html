@@ -1,0 +1,223 @@
+<nb-card>
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        LISTA |
+      </span>
+      <span class="font-weight-light" i18n>
+        Lista de usuarios
+      </span>
+    </div>
+    <div>
+      <!-- <nb-icon icon="calendar-outline"></nb-icon>
+      {{ today }} -->
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="submitFormSearch()">
+
+      <!-- <div class="container"> -->
+      <div class="row">
+        <div class="col-md-8">
+          <nb-form-field>
+            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+            <input [formControl]="textSearch" type="search" placeholder="Buscar..." nbInput fullWidth shape="round"
+              fieldSize="small">
+          </nb-form-field>
+        </div>
+        <div class="col-md-4 open-button-end">
+          <button nbButton type="submit" status="primary" size="small">
+            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+            Buscar
+          </button>
+          <button nbButton type="button" status="primary" size="small" (click)="onRegistrarNuevo()">
+            <nb-icon icon="plus-outline"></nb-icon>
+            Agregar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- </div> -->
+
+    <!-- <div class="row">
+      <div class="col-md-2">
+        <div class="form-group row">
+          <div class="col-md-12 text-right">
+
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <br>
+    <div class="row" [nbSpinner]="loadingSpinner" nbSpinnerStatus="primary">
+      <div class="col-md-12">
+        <nb-list *ngIf="users.length > 0; else emptyList">
+          <nb-list-item *ngFor="let item of users | paginate: { id: 'usersPaginate',
+      itemsPerPage: pagination?.pageSize,
+      currentPage: pagination?.currentPage,
+      totalItems: pagination?.totalItems}" class="d-flex justify-content-between">
+            <nb-user [picture]="item.img_url" [name]="item.name" [title]="item.email">
+            </nb-user>
+            <div class="open-button-end">
+
+              <button nbButton style="pointer-events: none!important; background-color: inherit"
+                *ngIf="item.is_superuser" status="basic" size="small" shape="round">
+                <nb-icon status="primary" icon="shield-outline"></nb-icon>
+                Super usuario
+              </button>
+
+              <button nbButton style="pointer-events: none!important; background-color: inherit" *ngIf="item.active"
+                status="basic" size="small" shape="round">
+                <nb-icon status="primary" icon="done-all-outline"></nb-icon>
+                Activado
+              </button>
+
+              <button nbButton style="pointer-events: none!important; background-color: inherit"
+                *ngIf="item.email_verified_at" status="basic" size="small" shape="round">
+                <nb-icon status="primary" icon="email-outline"></nb-icon>
+                Verificado
+              </button>
+
+              <button nbButton status="primary" size="small" nbTooltip="Administración de roles" shape="round"
+                (click)="onManageRols(item.id, item.name)">
+                <nb-icon icon="people-outline"></nb-icon>
+              </button>
+
+              <button nbButton status="primary" size="small" nbTooltip="Editar usuario" shape="round"
+                (click)="onEditar(item.id)">
+                <nb-icon icon="edit-outline"></nb-icon>
+              </button>
+              <button nbButton (click)="onDelete(item.id)" size="small" shape="round" status="primary"
+                nbTooltip="Eliminar usuario">
+                <nb-icon nbPrefix icon="trash-outline" pack="eva"></nb-icon>
+              </button>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </div>
+    </div>
+
+    <ng-template #emptyList>
+      <div class="text-center">
+        <span i18n class="text-center label">
+          No hay registros para mostrar.
+        </span>
+      </div>
+    </ng-template>
+
+    <!-- <div class="row" *ngIf="users.length > 0; else emptySpace">
+      <div class="col-md-12" *ngFor="let user of users | paginate: { id: 'usersPaginate',
+      itemsPerPage: pagination?.pageSize,
+      currentPage: pagination?.currentPage,
+      totalItems: pagination?.totalItems}">
+        <nb-user [picture]="user.img_url" [name]="user.name" [title]="user.email">
+        </nb-user>
+      </div>
+    </div>
+    <ng-template #emptySpace>
+      <br>
+      <div class="text-center">
+        <label class="label"> No hay registros para mostrar.</label>
+      </div>
+    </ng-template> -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <nb-card>
+          <nb-card-body class="text-center">
+            <pagination-controls class="lamb-pagination" id="usersPaginate" (pageChange)="pageChanged($event)"
+              (pageBoundsCorrection)="pageChanged($event)" [maxSize]="paginationControls.maxSize"
+              [directionLinks]="paginationControls.directionLinks" [responsive]="paginationControls.responsive"
+              previousLabel="ANTERIOR" nextLabel="SIGUIENTE" [autoHide]="paginationControls.autoHide" screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page" screenReaderCurrentLabel="Estás en la página">
+            </pagination-controls>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+
+    <!--
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th>N</th>
+                <th>Nombre</th>
+                <th>E-mail</th>
+                <th class="text-center">Creado en</th>
+                <th class="text-center">Confirmado por E-mail</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="users.length > 0; else emptySpace" [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+              <tr *ngFor="let item of users; let i=index">
+                <th>{{ (i+1) }}</th>
+                <td>
+                  <span class="fa fa-user"></span>
+                  <nb-icon icon="person-outline" status="primary"></nb-icon>
+                  {{ item.name }}
+                </td>
+                <td>
+                  <nb-icon icon="email-outline" status="primary"></nb-icon>
+                  {{ item.email }}
+                </td>
+                <td class="text-center">
+                  {{ item.created_at }}
+                </td>
+                <td class="text-center">
+                  <span *ngIf="item.activo === 1; else desactivo">
+                    <nb-icon icon="checkmark-outline" status="success"></nb-icon>
+                    Confirmado
+                  </span>
+                  <ng-template #desactivo>
+                    <span>
+                      <nb-icon icon="slash-outline" status="danger"></nb-icon>
+                      No Confirmado
+                    </span>
+                  </ng-template>
+                </td>
+                <td class="text-center open-button-end">
+
+                  <button nbButton status="basic" size="tiny" nbTooltip="Administración de jerarquía"
+                    (click)="onManageJerarquia(item.id)">
+                    <nb-icon icon="grid-outline"></nb-icon>
+                    Jerarquía
+                  </button>
+
+                  <button nbButton status="basic" size="tiny" nbTooltip="Administración de roles"
+                    (click)="onManageRols(item.id, item.name)">
+                    <nb-icon icon="people-outline"></nb-icon>
+                    Roles
+                  </button>
+
+                  <button nbButton status="basic" size="tiny" nbTooltip="Editar usuario"
+                    (click)="onEditar(item.id, item.name)">
+                    <nb-icon icon="edit-outline"></nb-icon>
+                    Editar
+                  </button>
+
+                  <button nbButton status="basic" size="tiny" nbTooltip="Eliminar usuario" (click)="onDelete(item.id)">
+                    <nb-icon icon="trash-outline"></nb-icon>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <ng-template #emptySpace>
+              <tbody [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                <tr>
+                  <td colspan="6" class="text-center">Sin resultados</td>
+                </tr>
+              </tbody>
+            </ng-template>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  -->
+  </nb-card-body>
+</nb-card>

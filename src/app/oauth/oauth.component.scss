@@ -1,0 +1,27 @@
+@import 'themes';
+
+img {
+    height: nb-theme(header-height);
+}
+.open-footer {
+    opacity: 0.7;
+    font-size: small;
+    a {
+        color: nb-theme(color-primary) !important;
+    }
+}
+.open-header {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    .open-name-enterprise {
+        margin: auto;
+        margin-left: 0rem;
+    }
+    .open-open {
+        font-size: 1.4rem;
+    }
+    .open-way {
+        font-size: 1.3rem;
+    }
+}

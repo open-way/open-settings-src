@@ -1,0 +1,191 @@
+@import 'themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: nb-theme(header-height);
+
+  .logo {
+    padding: 0 nb-theme(header-padding);
+    margin: auto;
+    display: contents;
+    font-size: 1.75rem;
+    font-weight: nb-theme(font-weight-bolder);
+    white-space: nowrap;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      // width: 5.6rem;
+      width: 100%;
+
+      &.black-and-white {
+        display: block;
+      }
+      
+      &.full-color {
+        display: none;
+      }
+      
+      @include nb-for-theme(default) {
+        &.black-and-white {
+          display: none;
+        }
+        
+        &.full-color {
+          display: block;
+        }
+      }
+      @include nb-for-theme(corporate) {
+        &.black-and-white {
+          display: block;
+        }
+        
+        &.full-color {
+          display: none;
+        }
+      }
+    }
+
+    span {
+      font-weight: nb-theme(font-weight-normal);
+    }
+  }
+
+  .left {
+    display: flex;
+    width: 100%;
+    order: 0;
+    flex-direction: row;
+    // .logo {
+      // border-right: 1px solid nb-theme(separator);
+    // }
+  }
+
+  .center {
+    order: 1;
+    width: 100%;
+    background-color: nb-theme(header-background-color);
+    color: nb-theme(header-text-color);
+    // border-bottom-left-radius: nb-theme(radius);
+    // border-bottom-right-radius: nb-theme(radius);
+    display: flex;
+    align-items: center;
+    height: auto;
+    height: nb-theme(header-height);
+    justify-content: space-between;
+    box-shadow: nb-theme(shadow);
+
+    nb-actions {
+      color:  nb-theme(header-text-color) !important;
+    }
+    ::ng-deep nb-user {
+      .user-name {
+        color:  nb-theme(header-text-color) !important;
+      }
+      .user-title {
+        color:  nb-theme(header-text-color) !important;
+      }
+      .user-picture.initials {
+        color:  nb-theme(header-text-color) !important;
+      }
+    }
+  }
+
+  .right {
+    order: 2;
+    flex-direction: row-reverse;
+    // .logo {
+      // border-left: 1px solid nb-theme(separator);
+    // }
+  }
+  
+  .header-container {
+    display: flex;
+    width: auto;
+    white-space: nowrap;
+
+    .logo-containter {
+      display: flex;
+      padding: 0.4rem;
+      width: nb-theme(sidebar-width);
+      margin-left: calc(#{nb-theme(sidebar-padding)}*-1);
+    }
+
+    .navigation, .navigation-end {
+      font-size: 2.5rem;
+      text-decoration: none;
+      margin: auto;
+      i {
+        display: block;
+        // color: nb-theme(header-fg);
+      }
+    }
+
+    &.right {
+      .navigation { 
+        padding-left: nb-theme(header-padding);
+        padding-right: nb-theme(header-padding);
+      }
+      .navigation-end { 
+        padding-left: nb-theme(header-padding);
+      }
+    }
+    &.left {
+      .navigation {
+        padding-right: nb-theme(header-padding);
+        padding-left: nb-theme(header-padding);
+      }
+      .navigation-end { 
+        padding-right: nb-theme(header-padding);
+        padding-left: nb-theme(header-padding);
+      }
+    }
+  }
+
+  .lamb-icon-right {
+    font-size: xx-large;
+    color: nb-theme(color-fg);
+    margin: 0.3rem;
+  }
+
+  nb-actions {
+    &.right {
+      nb-action {
+        border-left: 1px solid nb-theme(separator) !important;
+        &:last-child {
+          border-left: none !important;
+        }
+      }
+    }
+  }
+
+  nb-icon {
+    cursor: pointer;
+  }
+
+  // @include media-breakpoint-down(xs) { }
+  // @include media-breakpoint-down(is) { }
+  @include media-breakpoint-down(sm) {
+    .control-item {
+      display: none;
+    }
+    .user-action {
+      border: none;
+      padding: 0.2rem;
+    }
+    .logo-containter {
+      width: calc(#{nb-theme(sidebar-width)}/2) !important;
+    }
+  }
+  // @include media-breakpoint-down(md) {}
+  // @include media-breakpoint-down(lg) {}
+  // @include media-breakpoint-down(xl) {}
+  // @include media-breakpoint-down(xxl) {}
+  // @include media-breakpoint-down(xxxl) {}
+}

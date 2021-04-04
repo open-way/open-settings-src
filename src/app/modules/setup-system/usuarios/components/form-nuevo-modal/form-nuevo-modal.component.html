@@ -1,0 +1,160 @@
+<nb-card [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary" status="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        NUEVO |
+      </span>
+      <span class="font-weight-light" i18n>
+        Agregar nuevo usuario
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+
+  </nb-card-header>
+
+  <ng-container *ngIf="options === 'INIT'">
+    <nb-card-body>
+      <div class="form-group">
+        <!-- <label for="num_doc" class="label text-center">
+          Ingresar número de documento o nombres
+        </label>
+        <ng-template #rt let-r="result" let-t="term">
+          {{ r.nombres }}
+          {{ r.ap_materno }}
+          {{r.ap_paterno}}
+          ({{r.num_doc}})
+        </ng-template>
+        <input type="text" nbInput fullWidth fieldSize="small" name="nombres" [resultTemplate]="rt" id="nombres"
+          [formControl]="numDocControl" [inputFormatter]="formatter" [ngbTypeahead]="search" placeholder="Buscar..."
+          container="body"> -->
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+          <input [formControl]="textSearch" type="search" placeholder="Buscar por nombres, apellidos o dni..." nbInput
+            fullWidth [nbAutocomplete]="auto" shape="round" fieldSize="small">
+
+          <nb-autocomplete #auto [handleDisplayFn]="viewHandle" [activeFirst]="true">
+            <!-- <nb-autocomplete #auto [activeFirst]="true"> -->
+            <nb-option *ngFor="let item of filteredOptions$ | async" [value]="item">
+              {{ item.fullname }}
+            </nb-option>
+          </nb-autocomplete>
+        </nb-form-field>
+
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="text-right open-button-end">
+
+      <button nbButton status="basic" size="small" (click)="onClose()">
+        <nb-icon icon="close-outline"></nb-icon>
+        Cancelar
+      </button>
+
+      <button nbButton status="primary" size="small" (click)="onNextPersonaExist()" [disabled]="textSearch.invalid"
+        *ngIf="(textSearch.value).persona_id">
+        <nb-icon icon="save-outline"></nb-icon>
+        Siguiente
+      </button>
+    </nb-card-footer>
+  </ng-container>
+
+  <ng-container *ngIf="options === 'PERSONA_EXIST'">
+    <nb-card-body>
+      <div class="container">
+        <nb-user [picture]="'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'"
+          [name]="userForm.get('name')?.value" [title]="userForm.get('title')?.value">
+        </nb-user>
+      </div>
+      <br>
+      <table class="table table-sm col-form-label-sm">
+        <thead>
+          <tr>
+            <th colspan="3" class="text-center"> Documentos de Identidad</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="personaDocumentos.length>0 ; else emptySpace">
+          <tr *ngFor="let item of personaDocumentos; let i=index">
+            <td>
+              <strong class="open-doc-small-name">
+                {{ item.tipo_documento_siglas }}
+              </strong>
+            </td>
+            <td>
+              {{ item.num_doc }}
+            </td>
+            <td>
+              <span class="font-weight-light" i18n>
+                {{ item.tipo_documento_nombre }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #emptySpace>
+        <tbody>
+          <tr>
+            <td colspan="3" class="text-center">
+              <label for="" class="label">No hay registros para mostrar.</label>
+            </td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </nb-card-body>
+
+    <nb-card-header class="open-head-info">
+      <div class="text-center">
+        <!-- <span i18n>
+          DATOS |
+        </span> -->
+        <span class="font-weight-light" i18n>
+          Ingrese los datos del usuario para completar el registro.
+        </span>
+      </div>
+      <div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <!-- <br>
+      <p class="font-weight-light text-center">
+
+      </p> -->
+      <form [formGroup]="userForm">
+        <div class="form-group">
+          <label for="email" class="label required">Email</label>
+          <input type="text" nbInput fullWidth fieldSize="small" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="password" class="label required">Contraseña</label>
+          <input type="password" nbInput fullWidth fieldSize="small" formControlName="password" name="password">
+        </div>
+        <div class="form-group">
+          <label for="password_confirmation" class="label required">Confirmar
+            contraseña</label>
+          <input type="password" nbInput fullWidth fieldSize="small" name="password_confirmation"
+            formControlName="password_confirmation">
+        </div>
+      </form>
+
+      <nb-alert outline="warning">
+        <span i18n>Le llegará un mensaje al correo electrónico registrado con el enlace de
+          verificación de la
+          cuenta.</span>
+      </nb-alert>
+
+    </nb-card-body>
+    <nb-card-footer class="text-right open-button-end">
+      <button nbButton status="basic" size="small" (click)="onClose()">
+        <nb-icon icon="close-outline"></nb-icon>
+        Cancelar
+      </button>
+
+      <button nbButton status="primary" size="small" (click)="onSave()" [disabled]="userForm.invalid">
+        <nb-icon icon="save-outline"></nb-icon>
+        Generar usuario
+      </button>
+    </nb-card-footer>
+  </ng-container>
+
+</nb-card>

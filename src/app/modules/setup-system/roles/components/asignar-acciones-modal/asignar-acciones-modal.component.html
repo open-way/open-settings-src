@@ -1,0 +1,69 @@
+<nb-card status="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n class="open-title">
+        <!-- Módulo.-  -->
+        {{aData.modulo.title}} |
+      </span>
+      <span class="font-weight-light" i18n>
+        Asignar acciones del módulo al rol.
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="table-responsive">
+      <table class="table table-sm col-form-label-sm table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>N</th>
+            <th>Nombre</th>
+            <th>Llave</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="moduloAcciones.length > 0; else emptyList">
+          <tr *ngFor="let item of moduloAcciones; let i=index">
+            <th>
+              <nb-checkbox status="warning" [(ngModel)]="item.asignado"></nb-checkbox>
+            </th>
+            <td>{{ (i+1) }}</td>
+            <td>
+              <button nbButton status="basic" style="pointer-events: none!important;" shape="round" size="tiny">
+                {{ item.nombre }}
+              </button>
+            </td>
+            <th>
+              <strong>
+                {{ item.llave }}
+              </strong>
+          </tr>
+        </tbody>
+        <ng-template #emptyList>
+          <tbody>
+            <tr>
+              <td colspan="4" class="text-center">
+                <label for="" class="label">No hay registros para mostrar.</label>
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cancelar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+
+  </nb-card-footer>
+</nb-card>

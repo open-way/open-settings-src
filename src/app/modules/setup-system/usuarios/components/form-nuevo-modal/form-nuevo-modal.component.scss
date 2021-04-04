@@ -1,0 +1,61 @@
+@import 'themes';
+
+// .es-header-icon{
+//     font-size: 1.1rem;
+//     margin-right: 0.4rem;
+// }
+// .col-form-label {
+//     color: nb-theme(header-bg);
+// }
+nb-radio-group {
+    display: flex;
+}
+nb-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+.open-button-end {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+.col-form-label.required::after {
+    content: ' *';
+    color: nb-theme(color-danger);;
+}
+// table {
+//     border-collapse: collapse;
+//     // border-radius: 20px;
+//     border-style: hidden; /* hide standard table (collapsed) border */
+//     // box-shadow: 0 0 0 1px nb-theme(color-primary-500); /* this draws the table border  */ 
+// }
+
+.open-head-info{
+    // background-color: nb-theme(list-item-divider-color) !important;
+    background-color: nb-theme(color-basic-400) !important;
+    color: nb-theme(text-basic-color) !important;
+}
+
+::ng-deep nb-dialog-container {
+    width: 30rem !important;
+}
+
+nb-user ::ng-deep {
+    // width: 80% !important;
+    // .info-container {
+    //     display: grid;
+    // }
+    .user-title {
+        opacity: 0.6 !important;
+    }
+    .user-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        font-size: 0.8rem !important;
+        color: nb-theme(color-primary-700) !important;
+        // color: nb-theme(color-primary-500) !important;
+        font-weight: 600 !important;
+    }
+}

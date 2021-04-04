@@ -1,0 +1,139 @@
+<!-- {{ formUser.value | json }} -->
+<div [nbSpinner]="loadingUpdate" nbSpinnerStatus="primary">
+  <form [formGroup]="formUser">
+
+    <nb-card class="open-card-image" status="me dium" status="primary">
+      <nb-card-body>
+        <img *ngIf="!formUser.get('img_url')?.value;else existImage" [src]="'assets/default/empty.jpeg'"
+          class="img-fluid rounded mx-auto d-block">
+        <ng-template #existImage>
+          <img class="img-fluid rounded mx-auto d-block" [src]="formUser.get('img_url')?.value" alt="">
+        </ng-template>
+        <!-- <div class="text-center">
+        <img src="https://pbs.twimg.com/media/D7CmaTGXoAE8Zm0.jpg" class="img-fluid rounded mx-auto d-block">
+      </div> -->
+        <input #inputFile style="display: none" type="file" accept=".jpg, .png, .jpeg" (change)="onFileChange($event)">
+        <!-- <button nbButton fullWidth status="basic" size="small" nbTooltip="Editar datos de usuario"> -->
+        <!-- <button nbButton status="basic" size="small">
+        <nb-icon icon="upload-outline"></nb-icon>
+        <span>Adjuntar imagen</span>
+      </button> -->
+      </nb-card-body>
+      <nb-card-footer class="text-center">
+        <p>
+          <small i18n>(Formatos: .jpg, .png, .jpeg, tamaño máximo: 8MB)</small>
+        </p>
+
+        <button nbButton outline status="primary" (click)="inputFile.click()" size="small" nbTooltip="Adjuntar imagen">
+          <nb-icon nbPrefix icon="upload-outline" pack="eva">
+          </nb-icon>
+          <span i18n>Cambiar imagen</span>
+        </button>
+
+        &nbsp;
+        <button nbButton outline status="primary" (click)="onDeleteArchivo()" size="small" nbTooltip="Eliminar imagen">
+          <nb-icon nbPrefix icon="close-outline" pack="eva">
+          </nb-icon>
+          <span i18n>Eliminar</span>
+        </button>
+
+      </nb-card-footer>
+    </nb-card>
+
+    <nb-card status="primary" [nbSpinner]="loadingSendVarificationEmail" nbSpinnerStatus="primary">
+      <nb-card-body>
+        <!-- <div class="open-info-user"> -->
+        <div class="input-button">
+          <input fieldSize="small" formControlName="name" placeholder="Nombre de usuario" nbInput fullWidth>
+          <button nbButton status="primary" size="small" (click)="onSaveName()"
+            nbTooltip="Guardar cambios de nombre de usuario">
+            <nb-icon icon="save-outline"></nb-icon>
+          </button>
+        </div>
+        <div class="input-button">
+          <input fieldSize="small" formControlName="email_show" placeholder="Email de acceso" nbInput fullWidth>
+          <button nbButton status="warning" size="small" (click)="updateEmail()"
+            nbTooltip="Editar email de acceso del usuario">
+            <nb-icon icon="edit-outline"></nb-icon>
+          </button>
+        </div>
+        <div *ngIf="!aUser?.email_verified_at" class="open-mensaje-email-verified text-center">
+          <hr class="line">
+          <nb-icon icon="alert-triangle-outline" status="danger"></nb-icon> &nbsp;
+
+          <small i18n>La dirección de correo electrónico no ha sido verificada. Consulte su correo electrónico para ver
+            si
+            hay un enlace de
+            verificación.
+          </small> <br>
+          <button nbButton status="danger" size="tiny" (click)="onSendOtherConfirmEmail()"
+            nbTooltip="Volver a enviar correo de confirmación">
+            <!-- <nb-icon icon="save-outline"></nb-icon> -->
+            Volver a enviar correo de confirmación
+          </button>
+        </div>
+
+        <!-- </div> -->
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="!isMyProfile">
+      <nb-card-header class="d-flex justify-content-between" style="position: relative;">
+        <span i18n>
+          Configuración
+        </span>
+        <button nbButton outline (click)="onGoPersona()" size="small" status="warning"
+          nbTooltip="Ir a ver los datos de la persona">
+          <nb-icon icon="external-link-outline"></nb-icon>
+          Ver Persona
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+
+        <nb-list>
+          <nb-list-item>
+            <nb-checkbox formControlName="is_superuser" status="warning">Super usuario</nb-checkbox>
+          </nb-list-item>
+          <nb-list-item>
+            <nb-checkbox formControlName="active" status="warning">Activo</nb-checkbox>
+          </nb-list-item>
+        </nb-list>
+
+      </nb-card-body>
+    </nb-card>
+  </form>
+
+  <nb-card>
+    <nb-card-header style="position: relative;">
+      <span i18n>
+        Seguridad
+      </span>
+      <!-- <nb-badge text="Actualizar contraseña" status="warning"></nb-badge> -->
+    </nb-card-header>
+    <nb-card-body>
+
+      <!-- <nb-list>
+            <nb-list-item>
+            </nb-list-item>
+            <nb-list-item>
+            </nb-list-item>
+        </nb-list> -->
+
+      <!-- <div class="form-group open-button-security">
+      <button nbButton ghost fullWidth outline status="danger" (click)="onDesactiveUser()"
+        nbTooltip="Desactivar usuario">
+        <nb-icon icon="shield-off-outline"></nb-icon>
+        Desactivar usuario
+      </button>
+    </div> -->
+      <div class="form-group open-button-security">
+        <button nbButton ghost fullWidth outline status="danger" (click)="onChangePassword()"
+          nbTooltip="Cambiar contraseña">
+          <nb-icon icon="shield-off-outline"></nb-icon>
+          Cambiar contraseña
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+</div>

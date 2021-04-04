@@ -1,0 +1,61 @@
+<div class="container" *ngIf="!hasWarninng">
+    <div class="offset-md-2 col-md-8">
+        <nb-card size="medium" [nbSpinner]="loading" nbSpinnerStatus="info">
+            <nb-card-body *ngIf="response">
+                <br>
+                <div class="icon">
+                    <img class="black-and-white" src="assets/icons/verified-email.svg">
+                </div>
+                <br>
+                <div class="container">
+                    <div class="text-center">
+                        <h5 i18n>¡Éxito!</h5>
+                        <!-- <h5 i18n>¡Success!</h5> -->
+                        <br>
+                        <p i18n>La dirección de correo electrónico ha sido verificada.</p>
+                        <!-- <p i18n>Your email address has verified.</p> -->
+                        <br>
+                        <button nbButton outline status="primary" nbTooltip="Ir a la página principal."
+                            (click)="goToHome()">
+                            <nb-icon icon="email-outline"></nb-icon>
+                            <span i18n>
+                                Ir a la página principal
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<div class="container" *ngIf="hasWarninng">
+    <div class="offset-md-2 col-md-8">
+        <nb-card size="medium">
+            <nb-card-body class="">
+                <br>
+                <div class="icon">
+                    <img class="black-and-white" src="assets/icons/verify-email.svg">
+                </div>
+                <br>
+                <div class="container">
+                    <div class="text-center">
+                        <h5 i18n>¡Error!</h5>
+                        <!-- <h5 i18n>¡Success!</h5> -->
+                        <br>
+                        <p i18n>Ocurrio un error al verificar su dirección de correo electrónico.</p>
+                        <!-- <p i18n>Your email address has verified.</p> -->
+                        <br>
+                        <button nbButton outline status="primary" nbTooltip="Volver a enviar correo."
+                            (click)="onSendOther()">
+                            <nb-icon icon="email-outline"></nb-icon>
+                            <span i18n>
+                                Ir a enviar el correo nuevamente
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

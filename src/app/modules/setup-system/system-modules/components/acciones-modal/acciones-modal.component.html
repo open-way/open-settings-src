@@ -1,0 +1,89 @@
+<nb-card status="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        ACCIONES |
+      </span>
+      <span class="font-weight-light" i18n>
+        Configuración de privilegios especiales en los módulos.
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="nuevoForm" [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary">
+      <div class="form-group">
+        <label for="nombre" class="label required">Nombre</label>
+        <input type="text" #nombre nbInput fullWidth fieldSize="small" name="nombre" id="nombre"
+          formControlName="nombre">
+      </div>
+      <div class="form-group">
+        <label for="llave" class="label required">Llave</label>
+        <input type="text" nbInput fullWidth fieldSize="small" name="llave" id="llave" formControlName="llave">
+      </div>
+      <div class="form-group text-center open-button-end">
+        <button nbButton status="basic" size="small" (click)="cleanForm()">
+          <nb-icon icon="minus-circle-outline"></nb-icon>
+          Limpiar
+        </button>
+        <button nbButton status="primary" size="small" (click)="onSave()">
+          <nb-icon icon="save-outline"></nb-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-sm col-form-label-sm table-hover">
+        <thead>
+          <tr>
+            <th>N</th>
+            <th>Nombre</th>
+            <th>Llave</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="moduloAcciones.length > 0; else emptyList">
+          <tr *ngFor="let item of moduloAcciones; let i=index">
+            <td>{{ (i+1) }}</td>
+            <td>{{ item.nombre }}</td>
+            <th>
+              <button nbButton status="basic" style="pointer-events: none!important;" shape="round" size="tiny">
+                {{ item.llave }}
+              </button>
+            <td class="open-button-end text-center">
+              <button nbButton nbTooltip="Editar acción" status="primary" size="tiny" (click)="editarAccion(item)">
+                <nb-icon icon="edit-outline"></nb-icon>
+              </button>
+              <button nbButton nbTooltip="Eliminar acción" status="primary" size="tiny" (click)="eliminarAccion(item)">
+                <nb-icon icon="trash-outline"></nb-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #emptyList>
+          <tbody>
+            <tr>
+              <td colspan="4" class="text-center">Sin resultados.</td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <!-- <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cancelar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button> -->
+
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,35 @@
+@mixin lamb-pagination-theme() {
+    .lamb-pagination {
+        .ngx-pagination {
+            margin-bottom: 0rem;
+            padding: 0rem;
+            li {
+                margin-right: 0.3rem;
+            }
+            .pagination-previous{
+                font-weight: nb-theme(button-text-font-weight) !important;
+                font-size: nb-theme(button-small-text-font-size) !important;
+                
+            }
+            .pagination-next{
+                font-weight: nb-theme(button-text-font-weight) !important;
+                font-size: nb-theme(button-small-text-font-size) !important;
+            }
+            .current {
+                background: nb-theme(color-primary-500) !important;
+                border-radius: nb-theme(button-rectangle-border-radius) !important;
+                font-weight: nb-theme(button-text-font-weight) !important;
+                padding: nb-theme(button-hero-small-padding) !important;
+                font-size: nb-theme(button-small-text-font-size) !important;
+            }
+            a {
+                padding: nb-theme(button-hero-small-padding) !important;
+                text-decoration: none;
+                font-weight: nb-theme(button-text-font-weight) !important;
+                font-size: nb-theme(button-small-text-font-size) !important;
+                background-color: nb-theme(button-filled-basic-background-color) !important;
+                border-radius: nb-theme(button-rectangle-border-radius) !important;
+            }
+        }
+    }
+}

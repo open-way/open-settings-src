@@ -1,0 +1,45 @@
+
+@mixin ngb-typeahead-theme() {
+    .dropdown-menu {
+        background-color: nb-theme(select-option-background-color);
+        font-family: nb-theme(select-text-font-family);
+        // font-weight: nb-theme(select-text-font-weight);
+        .dropdown-item {
+            color: nb-theme(select-option-text-color);
+            background-color: nb-theme(select-option-background-color);
+            font-size: nb-theme(select-small-text-font-size);
+            font-weight: nb-theme(select-text-font-weight);
+            &.active {
+                background-color: nb-theme(select-option-focus-background-color);
+                color: nb-theme(select-option-focus-text-color);
+            }
+            &:focus {
+                background-color: nb-theme(select-option-focus-background-color);
+                color: nb-theme(select-option-focus-text-color);
+            }
+            &:hover {
+                background-color: nb-theme(select-option-hover-background-color);
+                color: nb-theme(select-option-hover-text-color);
+            }
+        }
+
+        // @each $size in nb-get-sizes() {
+        //     nb-select.size-#{$size} .select-button,
+        //     .size-#{$size} nb-option {
+        //       font-size: nb-theme(select-#{$size}-text-font-size);
+        //       line-height: nb-theme(select-#{$size}-text-line-height);
+        //     }
+        
+        //     nb-select.size-#{$size} .select-button.empty::before {
+        //       content: ' ';
+        //       display: block;
+        //       height: nb-theme(select-#{$size}-text-line-height);
+        //     }
+        
+        //     nb-select.size-#{$size}:not(.full-width),
+        //     .options-list:not(.full-width) {
+        //       max-width: nb-theme(select-#{$size}-max-width);
+        //     }
+        // }
+    }
+}

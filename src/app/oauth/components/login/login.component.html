@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-card [nbSpinner]="loadingSpinnerLogin" nbSpinnerStatus="info">
+      <nb-card-header>
+        <h4>
+          Login
+        </h4>
+        <small>Debe ingresar sus credenciales para acceder al sistema</small>
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="loginForm">
+          <div class="form-group">
+            <label for="email" class="col-form-label col-form-label-sm required">Usuario</label>
+            <input type="text" nbInput fullWidth fieldSize="small" formControlName="email">
+          </div>
+          <div class="form-group">
+            <span class="label-with-link">
+              <label for="password" class="col-form-label col-form-label-sm required">Contraseña</label>
+              <label class="col-form-label col-form-label-sm">
+                <a class="forgot-password caption-2" [routerLink]="['../request-password']">¿Olvidaste tu
+                  contraseña?</a>
+              </label>
+            </span>
+            <input type="password" nbInput fullWidth fieldSize="small" formControlName="password">
+          </div>
+          <div class="form-group">
+            <nb-checkbox formControlName="remember_me">Recordarme</nb-checkbox>
+          </div>
+          <div class="form-group text-center es-button-acciones">
+            <button nbButton size="small" (click)="onLogin()" status="primary">
+              <nb-icon icon="log-in-outline"></nb-icon>
+              Iniciar
+              Sesión
+            </button>
+          </div>
+          <div class="form-group text-center">
+            <p>
+              ¿No tienes una cuenta?
+              <a class="text-link" [routerLink]="['../signup']">
+                Registrar
+              </a>
+              <!-- <a class="text-link" [routerLink]="['../reset-password']">
+                Reset
+              </a> -->
+            </p>
+          </div>
+
+        </form>
+
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>

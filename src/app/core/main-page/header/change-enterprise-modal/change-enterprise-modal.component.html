@@ -1,0 +1,54 @@
+<nb-card>
+    <nb-card-header>
+        <div>
+            <nb-icon icon="color-palette-outline"></nb-icon>
+            <span i18n>
+                Cambiar mi entidad y departamento.
+            </span>
+        </div>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="loadingSave" nbSpinnerStatus="primary">
+        <form [formGroup]="enterpriseForm">
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label id="id_entidad" class="col-md-4 col-form-label required text-right" i18n>Entidad:</label>
+                    <div class="col-md-8">
+                        <nb-select placeholder="Entidad" fullWidth [size]="'small'" formControlName="id_entidad">
+                            <nb-option value="" i18n>Seleccione</nb-option>
+                            <nb-option *ngFor="let entity of entities" [value]="entity.id_entidad">
+                                {{ entity.id_entidad }} {{ entity.nombre }}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label id="id_depto" class="col-md-4 col-form-label required text-right" i18n>Departamento:</label>
+                    <div class="col-md-8">
+                        <nb-select placeholder="Departamento" fullWidth [size]="'small'" formControlName="id_depto">
+                            <nb-option value="" i18n>Seleccione</nb-option>
+                            <nb-option *ngFor="let department of departments" [value]="department.id_depto">
+                                {{ department.id_depto }} {{ department.nombre }}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </nb-card-body>
+    <nb-card-footer class="text-right es-button-acciones">
+        <button nbButton size="small" (click)="onClose()">
+            <nb-icon icon="close-outline"></nb-icon>
+            <span i18n>
+                Cancelar
+            </span>
+        </button>
+        <button nbButton size="small" status="primary" [disabled]="enterpriseForm.invalid" (click)="onSubmit()">
+            <nb-icon icon="save-outline"></nb-icon>
+            <span i18n>
+                Guardar
+            </span>
+        </button>
+    </nb-card-footer>
+</nb-card>

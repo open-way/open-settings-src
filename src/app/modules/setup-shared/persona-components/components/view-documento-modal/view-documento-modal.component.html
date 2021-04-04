@@ -1,0 +1,32 @@
+<nb-card status="basic">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        DOCUMENTO |
+      </span>
+      <span class="font-weight-light" i18n>
+        <!-- Editar el módulo: {{ nombreModulo }} -->
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary">
+
+
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cerrar
+    </button>
+
+    <!-- <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button> -->
+
+  </nb-card-footer>
+</nb-card>

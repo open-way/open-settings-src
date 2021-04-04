@@ -1,0 +1,69 @@
+<nb-card status="primary" [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        CONTACTO |
+      </span>
+      <span class="font-weight-light" i18n>
+        Guardar o actualizar contacto.
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <!-- {{ personaVirtualForm.value | json }} -->
+    <form [formGroup]="personaVirtualForm">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tipo_virtual_id" i18n class="label required">
+                Tipo de dirección</label>
+              <!-- <div> -->
+              <nb-select size="small" fullWidth formControlName="tipo_virtual_id" id="tipo_virtual_id">
+                <nb-option [value]="''" disabled>
+                  Seleccionar
+                </nb-option>
+                <nb-option *ngFor="let item of tipoVirtuals" [value]="item.tipo_virtual_id">
+                  {{ item.nombre }} ({{ item.siglas }})
+                </nb-option>
+              </nb-select>
+              <!-- </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="direccion" i18n class="label required">Dirección
+              </label>
+              <input type="text" formControlName="direccion" fieldSize="small" nbInput fullWidth name="direccion"
+                id="direccion" placeholder="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <nb-toggle status="success" formControlName="activo">Activo</nb-toggle>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cerrar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+
+  </nb-card-footer>
+</nb-card>

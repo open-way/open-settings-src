@@ -1,0 +1,38 @@
+@import 'themes';
+
+@include nb-install-component() {
+  position: relative;
+  nb-icon {
+    color: nb-theme(input-placeholder-text-color);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+    z-index: 1;
+    font-size: 1.25rem;
+    &[ng-reflect-options = 'small'] {
+        font-size: 1rem;
+    }
+  }
+  ::ng-deep nb-spinner {
+    background-color: transparent;
+    .spin-circle {
+        font-size: 1.25rem;
+    }
+    &.size-small .spin-circle {
+        font-size: 1rem;
+    }
+  }
+
+  .loading-space {
+    height: 1.7rem;
+    width: 1.7rem;
+    background-color: transparent;
+    color: transparent;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0.7rem;
+    z-index: 1;
+  }
+}

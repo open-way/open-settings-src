@@ -1,0 +1,118 @@
+{
+    "0": {
+        "title": "Error!",
+        "description": "Error desconocido"
+    },
+    "200": {
+        "title": "Éxito",
+        "description": "La operación ha tenido éxito"
+    },
+    "201": {
+        "title": "Creado",
+        "description": "La operación se ha cumplido y resultó en la creación de un nuevo recurso"
+    },
+    "202": {
+        "title": "Aceptado",
+        "description": "La operación se ha aceptado para su procesamiento, pero el procesamiento no se ha completado."
+    },
+    "203": {
+        "title": "Información no autoritativa",
+        "description": "El servidor procesó con éxito la operación, pero está devolviendo información que puede ser de otra fuente."
+    },
+    "204": {
+        "title": "Éxito",
+        "description": "El servidor procesó correctamente la operación, pero no devuelve ningún contenido."
+    },
+    "205": {
+        "title": "Alto!",
+        "description": ""
+    },
+    "206": {
+        "title": "Alto!",
+        "description": "El servidor entrega solo una parte del recurso debido a un encabezado de rango enviado por el cliente."
+    },
+    "300": {
+        "title": "Alto!",
+        "description": "Alto!"
+    },
+    "400": {
+        "title": "Operación incorrecta",
+        "description": "La operación no se puede cumplir debido a una mala sintaxis."
+    },
+    "401": {
+        "title": "No autorizado",
+        "description": "La operación requiere autenticación de usuario."
+    },
+    "403": {
+        "title": "Prohibido",
+        "description": "La operación solicitada no está permitida para el usuario."
+    },
+    "404": {
+        "title": "Extraviado",
+        "description": "No pudo encontrar ese objeto."
+    },
+    "405": {
+        "title": "Método no permitido",
+        "description": "Se realizó una solicitud de un recurso utilizando un método de solicitud no admitido por ese recurso."
+    },
+    "406": {
+        "title": "Inaceptable",
+        "description": "Inaceptable"
+    },
+    "409": {
+        "title": "Error!",
+        "description": "La operación no pudo completarse debido a un conflicto con el estado actual del recurso."
+    },
+    "410": {
+        "title": "Error!",
+        "description": "El recurso solicitado ya no está disponible y no estará disponible nuevamente."
+    },
+    "411": {
+        "title": "Error!",
+        "meesage": "Longitud requerida"
+    },
+    "412": {
+        "title": "Condición previa Falló",
+        "meesage": "Condición previa Falló"
+    },
+    "413": {
+        "title": "Error!",
+        "meesage": "La solicitud es más grande de lo que el servidor está dispuesto o puede procesar."
+    },
+    "414": {
+        "title": "Error!",
+        "meesage": "El servidor se niega a atender la solicitud porque el URI de solicitud es más largo de lo que el servidor está dispuesto a interpretar"
+    },
+    "415": {
+        "title": "Tipo de medio no admitido",
+        "meesage": "Tipo de medio no admitido"
+    },
+    "422": {
+        "title": "Error!",
+        "meesage": "Entidad no procesable"
+    },
+    "429": {
+        "title": "Error!",        
+        "meesage": "Demasiadas solicitudes"
+    },
+    "500": {
+        "title": "Error en el servidor interno",
+        "description": "Error de servidor interno"
+    },
+    "501": {
+        "title": "No se ha implementado",
+        "description": "No se ha implementado"
+    },
+    "502": {
+        "title": "Error!",
+        "description": "Mala puerta de enlace"
+    },
+    "503": {
+        "title": "Error!",
+        "description": "Servicio no disponible"
+    },
+    "504": {
+        "title": "Error!",
+        "description": "Timeout de Gateway"
+    }
+}

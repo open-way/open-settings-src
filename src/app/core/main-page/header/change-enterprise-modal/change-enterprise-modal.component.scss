@@ -1,0 +1,18 @@
+@import 'themes';
+@include nb-install-component() {
+    nb-card-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    // .es-header-icon{
+    //     margin-right: 0.4rem;
+    // }
+    // .col-form-label {
+    //     color: nb-theme(color-primary);
+    // }
+    .es-button-acciones {
+        button {
+            margin-right: 0.3rem;
+        }
+    }
+}

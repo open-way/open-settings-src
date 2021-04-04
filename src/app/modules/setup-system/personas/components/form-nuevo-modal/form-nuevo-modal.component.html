@@ -1,0 +1,20 @@
+<nb-card [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary" status="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        NUEVO |
+      </span>
+      <span class="font-weight-light" i18n>
+        Agregar nueva persona
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+
+  </nb-card-header>
+
+  <nb-card-body>
+    <open-form-persona-general [persona]="persona" (onSaved)="onSaved($event)"></open-form-persona-general>
+  </nb-card-body>
+</nb-card>

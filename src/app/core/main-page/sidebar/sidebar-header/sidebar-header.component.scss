@@ -1,0 +1,70 @@
+@import 'themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .main-btn {
+    // width: 12rem;
+    // height: 5rem;
+    width: 100%;
+    // tslint:disable:length-zero-no-unit
+    // margin-top: calc(-0.6rem - #{nb-theme(sidebar-header-gap)});
+    // margin-top: calc(0rem - #{nb-theme(sidebar-header-gap)}); // falta el rem a 0.
+    // color: nb-theme(color-bg);
+    transition: padding 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.48);
+    box-shadow: none; /** Reemplaza al original */
+    // background-image: linear-gradient(to right, nb-theme(header-bg), nb-theme(header-bg));
+
+    // @include nb-for-theme(lamb-default) {
+    //   background-image: linear-gradient(to right, nb-theme(color-primary), nb-theme(color-primary));
+    // }
+    // @include nb-for-theme(lamb-ming) {
+    //   background-image: linear-gradient(to right, nb-theme(menu-submenu-bg), nb-theme(menu-submenu-bg));
+    // }
+    i {
+      font-size: 2rem;
+    }
+
+    span {
+      padding-left: 0.25rem;
+    }
+
+    i,
+    span {
+      vertical-align: middle;
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    .main-content {
+      padding: 0.75rem !important;
+    }
+
+    .router-content {
+      position: relative;
+    }
+
+    .router-content > * {
+      display: block;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .menu-sidebar {
+      margin-top: 0;
+
+      ::ng-deep .main-container {
+        height: calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)}) !important;
+        border-top-right-radius: 0;
+
+        .scrollable {
+          padding-top: 0;
+        }
+      }
+    }
+
+    .main-btn {
+      display: none;
+    }
+  }
+}

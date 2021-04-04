@@ -1,0 +1,12 @@
+<nb-card status="basic">
+    <nb-card-body>
+        <div class="row">
+            <div class="col-3">
+                <open-main-col-left [isMyProfile]="isMyProfile" [user]="userInSession"></open-main-col-left>
+            </div>
+            <div class="col-9">
+                <open-main-col-right [persona]="personaInSession"></open-main-col-right>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

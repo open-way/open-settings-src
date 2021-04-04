@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-md-1  text-left">
+    <button nbButton (click)="goBack()" size="small" shape="round" status="primary" nbTooltip="Regresar">
+      <nb-icon nbPrefix icon="arrow-back-outline" pack="eva"></nb-icon>
+    </button>
+  </div>
+  <div class="col-md-10">
+    <ng-template #nodeTemplateRef let-node>
+      <tr>
+        <th>
+          <nb-checkbox status="warning" [(ngModel)]="node.asignado"></nb-checkbox>
+        </th>
+        <th></th>
+        <td>
+          {{ node.title }}
+        </td>
+        <td>
+          <span class="fa fa-link es-icon-info"></span>
+          {{ node.link }}
+        </td>
+        <td class="text-center">
+          <span *ngIf="node.is_mobile">
+            <span class="fa fa-mobile es-icon-info"></span>
+            Móbil</span>
+          <span *ngIf="!node.is_mobile">
+            <span class="fa fa-chrome es-icon-info"></span>
+            Web</span>
+        </td>
+        <td>
+          <button nbButton shape="round" status="primary" size="small" nbTooltip="Administrar acciones"
+            (click)="onSettigAcciones(node)">
+            <nb-icon icon="attach-2-outline"></nb-icon>
+          </button>
+        </td>
+      </tr>
+      <ng-container *ngIf="node.children && node.children.length > 0">
+        <ng-template ngFor [ngForOf]="node.children" [ngForTemplate]="nodeTemplateRef">
+        </ng-template>
+      </ng-container>
+    </ng-template>
+    <nb-card>
+      <nb-card-header>
+        <div class="text-center">
+          <span i18n class="name-rol">
+            {{rol?.nombre }} |
+          </span>
+          <span class="font-weight-light" i18n>
+            Lista de módulos a las que el rol tiene acceso
+          </span>
+        </div>
+        <div>
+          <!-- <nb-icon icon="calendar-outline"></nb-icon>
+          {{ today }} -->
+        </div>
+      </nb-card-header>
+
+      
+      <nb-card-body [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover col-form-label-sm">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>N</th>
+                    <th>Titulo</th>
+                    <th>Link</th>
+                    <th class="text-center">Plataforma</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="modulos.length > 0; else emptySpace" [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                  <ng-container *ngFor="let item of modulos; let i=index">
+                    <ng-template [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ $implicit: item }">
+                    </ng-template>
+                  </ng-container>
+                </tbody>
+                <ng-template #emptySpace>
+                  <tbody [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                    <tr>
+                      <td colspan="6" class="text-center">Sin resultados</td>
+                    </tr>
+                  </tbody>
+                </ng-template>
+
+
+
+                <!-- <tbody *ngIf="modulos.length > 0; else emptySpace">
+                      <ng-container *ngFor="let item of modulos; let i=index">
+                        <tr>
+                          <th>
+                            <nb-checkbox [(ngModel)]="item.asignado"></nb-checkbox>
+                          </th>
+                          <th>{{ (i+1) }}</th>
+                          <td>
+                            {{ item.title }}
+                          </td>
+                          <td>
+                            <span class="fa fa-link es-icon-info"></span>
+                            {{ item.link }}
+                          </td>
+                          <td class="text-center">
+                            <span *ngIf="item.is_mobile">
+                              <span class="fa fa-mobile es-icon-info"></span>
+                              Móbil</span>
+                            <span *ngIf="!item.is_mobile">
+                              <span class="fa fa-chrome es-icon-info"></span>
+                              Web</span>
+                          </td>
+                        </tr>
+                        <ng-container *ngIf="item.children && item.children.length > 0">
+                          <tr *ngFor="let item2 of item.children; let in = index">
+                            <th>
+                              <nb-checkbox [(ngModel)]="item2.asignado"></nb-checkbox>
+                            </th>
+                            <td>
+                            </td>
+                            <td>
+                              {{ item2.title }}
+                            </td>
+                            <td>
+                              <span class="fa fa-link es-icon-info"></span>
+                              {{ item2.link }}
+                            </td>
+                            <td class="text-center">
+                              <span *ngIf="item2.is_mobile">
+                                <span class="fa fa-mobile es-icon-info"></span>
+                                Móbil</span>
+                              <span *ngIf="!item2.is_mobile">
+                                <span class="fa fa-chrome es-icon-info"></span>
+                                Web</span>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+                    </tbody> -->
+
+
+                <ng-template #emptySpace>
+                  <tbody [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                    <tr>
+                      <td colspan="6" class="text-center">
+                        <label for="" class="label">No hay registros para mostrar.</label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </ng-template>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row open-button-end">
+          <div class="col-md-12 text-center">
+            <!-- <button nbButton status="basic" size="small" (click)="goBack()">
+                  <nb-icon icon="close-outline"></nb-icon>
+                  Cancelar
+                </button> -->
+
+            <button nbButton fullWidth status="primary" size="small" (click)="onSaveCheckeds()">
+              <nb-icon icon="save-outline"></nb-icon>
+              Guardar
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

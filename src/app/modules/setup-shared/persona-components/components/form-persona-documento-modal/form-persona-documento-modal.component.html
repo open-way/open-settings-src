@@ -1,0 +1,100 @@
+<nb-card status="primary" nbSpinnerMessage="Guardando datos..." [nbSpinner]="loadingSpinnerSave"
+  nbSpinnerStatus="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        DOCUMENTO |
+      </span>
+      <span class="font-weight-light" i18n>
+        Guardar o actualizar documento.
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="personDocumentoForm">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tipo_documento_id" i18n class="label required">
+                Tipo de documento</label>
+              <nb-select size="small" fullWidth formControlName="tipo_documento_id" id="tipo_documento_id">
+                <nb-option [value]="''" disabled>
+                  Seleccionar
+                </nb-option>
+                <nb-option *ngFor="let item of tipoDocumentos" [value]="item.tipo_documento_id">
+                  {{ item.nombre }} ({{ item.siglas }})
+                </nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="num_doc" i18n class="label required">Número de documento
+              </label>
+              <input type="text" formControlName="num_doc" fieldSize="small" nbInput fullWidth name="num_doc"
+                id="num_doc" placeholder="">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="num_doc" i18n class="label">Imagen del documento
+              </label>
+              <nb-card>
+                <nb-card-body class="text-center">
+                  <img *ngIf="!personDocumentoForm.get('img_url')?.value;else existImage"
+                    [src]="'assets/default/empty.jpeg'" style="width: auto; height: 200px">
+                  <ng-template #existImage>
+                    <img style="width: auto; height: 200px" [src]="personDocumentoForm.get('img_url')?.value" alt="">
+                  </ng-template>
+                </nb-card-body>
+
+                <nb-card-footer class="buttons-end text-center">
+                  <p>
+                    <small i18n>(Formatos: .jpg, .png, .jpeg, tamaño máximo: 8MB)</small>
+                  </p>
+                  <input #inputFile style="display: none" type="file" accept=".jpg, .png, .jpeg"
+                    (change)="onFileChange($event)">
+                    <button nbButton outline status="primary" (click)="inputFile.click()" size="small"
+                      nbTooltip="Adjuntar imagen">
+                      <nb-icon nbPrefix icon="upload-outline" pack="eva">
+                      </nb-icon>
+                      <span>Adjuntar imagen</span>
+                    </button>
+                  &nbsp;
+                  <button nbButton outline status="primary" (click)="onDeleteArchivo()" size="small"
+                    nbTooltip="Eliminar imagen">
+                    <nb-icon nbPrefix icon="close-outline" pack="eva">
+                    </nb-icon>
+                    <span>Eliminar</span>
+                  </button>
+                </nb-card-footer>
+              </nb-card>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+
+
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cerrar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+
+  </nb-card-footer>
+</nb-card>

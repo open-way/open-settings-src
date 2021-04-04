@@ -1,0 +1,15 @@
+<nb-card size="large">
+    <nb-card-body class="d-flex justify-content-center align-items-center">
+        <!-- Prohibido -->
+        <div class="text-center">
+            <h5 i18n>Página no autorizada</h5>
+            <p i18n>La operación solicitada no está permitida para el usuario.</p>
+            <button nbButton outline status="primary" nbTooltip="Regresar a la página anterior" (click)="onBack()">
+                <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                <span i18n>
+                    Regresar
+                </span>
+            </button>
+        </div>
+    </nb-card-body>
+</nb-card>

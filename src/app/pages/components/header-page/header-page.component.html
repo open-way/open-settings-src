@@ -1,0 +1,27 @@
+<div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+    <div class="logo-containter">
+        <div class="logo" (click)="goToShellApp()">
+            <img class="black-and-white" src="assets/logos/iasd-logo-black-and-white.svg">
+        </div>
+    </div>
+</div>
+
+<div class="center">
+    <div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+        <!-- <div class="navigation" (click)="toggleSidebar()">
+            <nb-icon icon="menu-outline"></nb-icon>
+        </div> -->
+    </div>
+    <nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+        <nb-action class="user-action">
+            <nb-user [onlyPicture]="userPictureOnly" nbContextMenuTag="context-menu-profile-1" [name]="user.full_name"
+                [title]="user.email" [picture]="user.picture"></nb-user>
+        </nb-action>
+    </nb-actions>
+</div>
+
+<div class="header-container" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+    <div class="navigation-end" (click)="onLogout()">
+        <nb-icon icon="power-outline"></nb-icon>
+    </div>
+</div>

@@ -1,0 +1,407 @@
+<nb-card>
+  <!-- <nb-card-header>Large card</nb-card-header> -->
+  <nb-card-body>
+    <nb-tabset fullWidth>
+
+      <nb-tab tabTitle="Datos personales" tabIcon="list-outline" responsive>
+
+        <!-- <nb-list>
+                    <nb-list-item>
+                    </nb-list-item>
+                    <nb-list-item>
+                        DOCUMENTOS DE IDENTIDAD
+                    </nb-list-item>
+                </nb-list> -->
+
+
+        <nb-accordion multi="true">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              <nb-icon icon="color-palette-outline"></nb-icon>
+              &nbsp;
+              Datos Generales
+            </nb-accordion-item-header>
+            <nb-accordion-item-body >
+
+              <!-- <button nbButton status="primary" nbTooltip="Editar datos de usuario">
+                +51
+              </button>
+
+              <button nbButton shape="rectangle" status="primary">
+                  <nb-icon icon="edit-outline"></nb-icon>
+
+              </button>
+              <button nbButton shape="semi-round" status="info">
+                  <nb-icon icon="edit-outline"></nb-icon>
+
+              </button>
+              <button nbButton shape="round" size="small" status="success">
+                  <nb-icon icon="plus-outline"></nb-icon>
+              </button> -->
+
+              <open-form-persona-general [persona]="aPersona"></open-form-persona-general>
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              <nb-icon icon="credit-card-outline"></nb-icon>
+              &nbsp;
+              Documentos de Identidad
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+
+              <div class="form-group row">
+                <div class="col-md-12 text-right">
+                  <button nbButton status="primary" size="small" (click)="onRegistrarNuevoDocumento()"
+                    nbTooltip="Agregar nuevo documento">
+                    <nb-icon icon="plus-outline"></nb-icon>
+                    Agregar
+                  </button>
+                </div>
+              </div>
+
+              <nb-list *ngIf="personaDocumentos.length>0 ; else emptySpace">
+                <nb-list-item *ngFor="let item of personaDocumentos; let i=index">
+                  <div class="col-1">
+                    <strong class="open-doc-small-name">
+                      {{ item.tipo_documento_siglas }}
+                    </strong>
+                  </div>
+                  <div class="col-2">
+                    {{ item.num_doc }}
+                  </div>
+                  <div class="col-6">
+                    <span class="font-weight-light" i18n>
+                      {{ item.tipo_documento_nombre }}
+                    </span>
+                  </div>
+                  <div class="col-2 open-button-end">
+                    <button nbButton shape="round" status="basic" size="small" (click)="onViewDocumento(item)"
+                      nbTooltip="Ver imagen">
+                      <nb-icon icon="external-link-outline"></nb-icon>
+                    </button>
+                    <button nbButton shape="round" status="basic" size="small" (click)="onEditarDocumento(item)"
+                      nbTooltip="Editar documento">
+                      <nb-icon icon="edit-outline"></nb-icon>
+                    </button>
+                    <button nbButton shape="round" status="basic" size="small" (click)="onEliminarDocumento(item)"
+                      nbTooltip="Eliminar documento">
+                      <nb-icon icon="trash-outline"></nb-icon>
+                    </button>
+                  </div>
+                </nb-list-item>
+
+
+
+              </nb-list>
+
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              <nb-icon icon="phone-missed-outline"></nb-icon>
+              &nbsp;
+              Contacto
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+
+
+              <div class="form-group row">
+                <div class="col-md-12 text-right">
+                  <button nbButton status="primary" size="small" (click)="onRegistrarNuevoTelefono()"
+                    nbTooltip="Agregar un nuevo contacto">
+                    <nb-icon icon="plus-outline"></nb-icon>
+                    Agregar
+                  </button>
+                </div>
+              </div>
+              <nb-list *ngIf="personaTelefonos.length>0 ; else emptySpace">
+                <nb-list-item *ngFor="let item of personaTelefonos; let i=index">
+                  <div class="col-1">
+
+                    <nb-icon *ngIf="item.es_privado" status="primary" icon="shield-off-outline"></nb-icon>
+                    <nb-icon *ngIf="!item.es_privado" status="primary" icon="shield-outline"></nb-icon>
+                    <!-- <strong class="open-doc-small-name">
+                      1
+                    </strong> -->
+                  </div>
+                  <div class="col-2">
+                    {{ item.num_telefono }}
+                  </div>
+                  <div class="col-6">
+                    <span class="font-weight-light" i18n>
+                      {{ item.tipo_telefono_nombre }}
+                    </span>
+                  </div>
+                  <div class="col-2 open-button-end">
+                    <button nbButton shape="round" status="basic" size="small" (click)="onEditarTelefono(item)"
+                      nbTooltip="Editar contacto">
+                      <nb-icon icon="edit-outline"></nb-icon>
+                    </button>
+                    <button nbButton shape="round" status="basic" size="small" nbTooltip="Eliminar contacto"
+                      (click)="onEliminarTelefono(item)">
+                      <nb-icon icon="trash-outline"></nb-icon>
+                    </button>
+                  </div>
+                </nb-list-item>
+              </nb-list>
+
+
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <!-- <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              <nb-icon icon="pin-outline"></nb-icon>
+              &nbsp;
+              Dirección
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              Item Content
+            </nb-accordion-item-body>
+          </nb-accordion-item> -->
+
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              <nb-icon icon="paper-plane-outline"></nb-icon>
+              &nbsp;
+              Dirección Virtual
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="form-group row">
+                <div class="col-md-12 text-right">
+                  <button nbButton status="primary" size="small" (click)="onRegistrarNuevaDireccionVirtual()"
+                    nbTooltip="Agregar nueva dirección virtual">
+                    <nb-icon icon="plus-outline"></nb-icon>
+                    Agregar
+                  </button>
+                </div>
+              </div>
+              <nb-list *ngIf="personaVirtuales.length>0 ; else emptySpace">
+                <nb-list-item *ngFor="let item of personaVirtuales; let i=index">
+                  <div class="col-1">
+                    <strong class="open-doc-small-name">
+                      {{ item.tipo_virtual_siglas }}
+                    </strong>
+                  </div>
+                  <div class="col-2">
+                    {{ item.direccion }}
+                  </div>
+                  <div class="col-6">
+                    <span class="font-weight-light" i18n>
+                      {{ item.tipo_virtual_nombre }}
+                    </span>
+                  </div>
+                  <div class="col-2 open-button-end">
+                    <button nbButton shape="round" status="basic" size="small" (click)="onEditarVirtual(item)"
+                      nbTooltip="Editar  dirección virtual">
+                      <nb-icon icon="edit-outline"></nb-icon>
+                    </button>
+                    <button nbButton shape="round" status="basic" size="small" (click)="onEliminarVirtual(item)"
+                      nbTooltip="Eliminar dirección virtual">
+                      <nb-icon icon="trash-outline"></nb-icon>
+                    </button>
+                  </div>
+                </nb-list-item>
+              </nb-list>
+              <ng-template #emptySpace>
+                <nb-list class="text-center">
+                  <nb-list-item class="open-empty-space">
+                    <label for="" class="text-center label">No hay registros para mostrar.</label>
+                  </nb-list-item>
+                </nb-list>
+              </ng-template>
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+        </nb-accordion>
+
+
+      </nb-tab>
+
+      <nb-tab tabTitle="Dirección" tabIcon="pin-outline" responsive [nbSpinner]="loadingSaveDireccion"
+        nbSpinnerMessage="Guardando datos..." nbSpinnerStatus="primary">
+        <!-- <nb-card size="medium" accent="primary"> -->
+
+        <nb-card>
+          <nb-card-body>
+            <button nbButton (click)="onRegistrarNuevaDireccion()" status="primary" size="small"
+              nbTooltip="Agregar nueva dirección">
+              <nb-icon icon="plus-outline"></nb-icon>
+              Agregar
+            </button>
+          </nb-card-body>
+        </nb-card>
+
+        <open-persona-direccion *ngFor="let item of personaDireccions; let i= index" [index]="i"
+          [personaDireccion]="item" (onDeleted)="onDeleted($event)"></open-persona-direccion>
+
+        <!--
+        <nb-card *ngFor="let item of personaDireccions; let i=index" size="giant">
+          <nb-card-header>
+            DIRECCIÓN {{ (i+1) }}
+          </nb-card-header>
+          <nb-card-body>
+
+            <div class="container row">
+              <div class="form-group col-md-6">
+                <label for="ubigeo_pais_id" class="col-form-label label text-right">
+                  Pais</label>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ubigeo_depto_id" class="col-form-label label text-right">Departamento</label>
+                <nb-select [(ngModel)]="item.ubigeo_depto_id" placeholder="Departamento" size="small" fullWidth
+                  name="ubigeo_depto_id" id="ubigeo_depto_id">
+                  <nb-option>hola</nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+            <div class="container row">
+              <div class="form-group col-md-6">
+                <label for="ubigeo_pvcia_id" class="col-form-label label text-right">Provincia</label>
+                <nb-select [(ngModel)]="item.ubigeo_pvcia_id" placeholder="Provincia" size="small" fullWidth
+                  name="ubigeo_pvcia_id" id="ubigeo_pvcia_id">
+                  <nb-option></nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ubigeo_ditto_id" class="col-form-label label text-right">Distrito</label>
+                <nb-select [(ngModel)]="item.ubigeo_ditto_id" placeholder="Distrito" size="small" fullWidth
+                  name="ubigeo_ditto_id" id="ubigeo_ditto_id">
+                  <nb-option></nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+            <div class="container row">
+              <div class="form-group col-8">
+                <label for="referencia" class="label">Referencia</label>
+                <input [(ngModel)]="item.referencia" type="text" nbInput fullWidth fieldSize="small" name="referencia"
+                  id="referencia">
+              </div>
+              <div class="form-group col-2">
+                <label style="visibility: hidden">Status</label>
+                <nb-checkbox [(ngModel)]="item.activo" status="warning">Activo</nb-checkbox>
+              </div>
+            </div>
+
+            <div class="container row">
+              <div class="form-group col-8">
+                <nb-form-field>
+                  <input type="text" name="search_calendar" id="search_calendar" shape="semi-round" fullWidth
+                    fieldSize="small" nbInput placeholder="Buscar...">
+                  <nb-icon nbSuffix icon="search-outline" pack="eva"></nb-icon>
+                </nb-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="apiLoaded | async">
+            </div>
+
+          </nb-card-body>
+          <nb-card-footer class="text-right">
+            <button nbButton ghost status="basic" size="small" nbTooltip="Eliminar dirección">
+              <nb-icon icon="trash-outline"></nb-icon>
+              Eliminar
+            </button>
+            <button nbButton ghost status="primary" size="small" nbTooltip="Guardar cambios">
+              <nb-icon icon="save-outline"></nb-icon>
+              Guardar
+            </button>
+          </nb-card-footer>
+        </nb-card>
+      -->
+
+        <!--
+        <nb-card size="giant">
+          <nb-card-header>
+            DIRECCIÓN 02
+          </nb-card-header>
+          <nb-card-body>
+
+            <div class="container row">
+              <div class="form-group col-md-6">
+                <label for="ubigeo_pais_id" class="col-form-label label text-right">
+                  Pais</label>
+                <nb-select formControlName="ubigeo_pais_id" placeholder="Pais" size="small" fullWidth
+                  name="ubigeo_pais_id" id="ubigeo_pais_id">
+                  <nb-option></nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ubigeo_depto_id" class="col-form-label label text-right">Departamento</label>
+                <nb-select formControlName="ubigeo_depto_id" placeholder="Departamento" size="small" fullWidth
+                  name="ubigeo_depto_id" id="ubigeo_depto_id">
+                  <nb-option></nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+            <div class="container row">
+              <div class="form-group col-md-6">
+                <label for="ubigeo_pvcia_id" class="col-form-label label text-right">Provincia</label>
+                <nb-select formControlName="ubigeo_pvcia_id" placeholder="Provincia" size="small" fullWidth
+                  name="ubigeo_pvcia_id" id="ubigeo_pvcia_id">
+                  <nb-option></nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ubigeo_ditto_id" class="col-form-label label text-right">Distrito</label>
+                <nb-select formControlName="ubigeo_ditto_id" placeholder="Distrito" size="small" fullWidth
+                  name="ubigeo_ditto_id" id="ubigeo_ditto_id">
+                  <nb-option></nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+            <div class="container row">
+              <div class="form-group col-8">
+                <label for="referencia" class="label">Referencia</label>
+                <input type="text" nbInput fullWidth fieldSize="small" name="referencia" id="referencia">
+              </div>
+              <div class="form-group col-2">
+                <label style="visibility: hidden">Status</label>
+                <nb-checkbox status="warning">Activo</nb-checkbox>
+              </div>
+            </div>
+
+            <div class="container row">
+              <div class="form-group col-8">
+                <nb-form-field>
+                  <input type="text" name="search_calendar" id="search_calendar" shape="semi-round" fullWidth
+                    fieldSize="small" nbInput placeholder="Buscar...">
+                  <nb-icon nbSuffix icon="search-outline" pack="eva"></nb-icon>
+                </nb-form-field>
+              </div>
+            </div>
+
+            <google-map [center]="position" [zoom]="8" width="100%" height="63%">
+              <map-marker [position]="position"></map-marker>
+            </google-map>
+          </nb-card-body>
+          <nb-card-footer class="text-right">
+            <button nbButton ghost status="basic" size="small" nbTooltip="Eliminar dirección">
+              <nb-icon icon="trash-outline"></nb-icon>
+              Eliminar
+            </button>
+            <button nbButton ghost status="primary" size="small" nbTooltip="Guardar cambios">
+              <nb-icon icon="save-outline"></nb-icon>
+              Guardar
+            </button>
+          </nb-card-footer>
+        </nb-card>
+      -->
+
+      </nb-tab>
+
+    </nb-tabset>
+
+  </nb-card-body>
+</nb-card>

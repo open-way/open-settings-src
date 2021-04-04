@@ -1,0 +1,30 @@
+@import 'themes';
+
+nb-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+nb-radio-group {
+    display: flex;
+}
+.open-button-end {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+.open-title {
+    text-transform: uppercase;
+}
+.col-form-label.required::after {
+    content: ' *';
+    color: nb-theme(color-danger);;
+}
+
+::ng-deep nb-dialog-container {
+    width: 30rem !important;
+}
+
+.open-alert {
+    display: block;
+    margin-bottom: 0rem;
+}

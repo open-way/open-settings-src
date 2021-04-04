@@ -1,0 +1,6 @@
+// @import './themes';
+@import './news/pagination';
+
+@mixin lamb-news-theme() {
+  @include lamb-pagination-theme();
+}

@@ -1,0 +1,70 @@
+@import 'themes';
+
+
+
+::ng-deep nb-card.open-card-image {
+    // background-color: nb-theme(card-background-color);
+    background-color: nb-theme(card-header-basic-background-color);
+    nb-card-body{
+        overflow: hidden;  
+        button {
+            position: absolute;
+            bottom: 0;
+            visibility: hidden;
+            // margin-right: 0.1rem;
+            margin-bottom: 0.1rem;
+            margin-left: 0.1rem;
+        }
+        &:hover {
+            button {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+    }
+    nb-card-footer {
+    }
+}
+[nbInput].status-basic:disabled {
+    color: inherit;
+    border: none;
+    background-color: nb-theme(card-background-color);
+}
+
+.input-button {
+    margin-bottom: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.open-mensaje-email-verified {
+    margin-top: 0.5rem;
+    // color: nb-theme(color-primary-500);
+    // font-weight: bold;
+}
+hr.line {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+.open-button-security {
+    margin-bottom: 0.5rem;
+}
+ul {
+    list-style-type: none;
+    margin: auto;
+}
+
+nb-list-item {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+.open-info-user {
+    .open-email {
+        color: nb-theme(color-primary-500);
+    }
+    .open-name {
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,188 @@
+<nb-card>
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        LISTA |
+      </span>
+      <span class="font-weight-light" i18n>
+        Lista de roles
+      </span>
+    </div>
+    <div>
+      <!-- <nb-icon icon="calendar-outline"></nb-icon>
+      {{ today }} -->
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <form (ngSubmit)="submitFormSearch()">
+      <div class="row">
+        <div class="col-md-8">
+          <nb-form-field>
+            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+            <input [formControl]="textSearch" type="search" placeholder="Buscar..." nbInput fullWidth shape="round"
+              fieldSize="small">
+          </nb-form-field>
+        </div>
+        <div class="col-md-4 open-button-end">
+          <button nbButton type="submit" status="primary" size="small">
+            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+            Buscar
+          </button>
+          <button nbButton type="button" status="primary" size="small" (click)="onRegistrarNuevo()">
+            <nb-icon icon="plus-outline"></nb-icon>
+            Agregar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <br>
+    <div class="row" [nbSpinner]="loadingSpinner" nbSpinnerStatus="primary">
+      <div class="col-md-12">
+        <nb-list *ngIf="rols.length > 0; else emptyList">
+          <nb-list-item *ngFor="let item of rols | paginate: { id: 'rolsPaginate',
+        itemsPerPage: pagination?.pageSize,
+        currentPage: pagination?.currentPage,
+        totalItems: pagination?.totalItems}" class="d-flex justify-content-between">
+            <nb-badge [text]="item?.activo === 0 ? 'Desactivo':'Activo'"
+              [status]="item?.activo === 0 ? 'warning':'success'" position="bottom start"></nb-badge>
+
+            <span>
+              {{ item.nombre }}
+            </span>
+            <div class="open-button-end">
+
+              <button *ngIf="item.activo; else rolDesactivo" nbButton shape="round" status="primary" size="small"
+                nbTooltip="Desactivar rol" (click)="onActivate(item.rol_id, item.activo)">
+                <nb-icon icon="slash-outline"></nb-icon>
+              </button>
+
+              <ng-template #rolDesactivo>
+                <button nbButton shape="round" status="primary" size="small" nbTooltip="Activar rol"
+                  (click)="onActivate(item.rol_id, item.activo)">
+                  <nb-icon icon="checkmark-outline"></nb-icon>
+                </button>
+              </ng-template>
+
+              <button nbButton shape="round" status="primary" size="small" nbTooltip="Administrar módulos del rol"
+                (click)="onView(item)">
+                <nb-icon icon="layers-outline"></nb-icon>
+              </button>
+
+              <button nbButton shape="round" status="primary" size="small" nbTooltip="Editar rol"
+                (click)="onEditar(item.rol_id, item.nombre)">
+                <nb-icon icon="edit-outline"></nb-icon>
+              </button>
+
+              <button nbButton shape="round" status="primary" size="small" nbTooltip="Eliminar rol"
+                (click)="onDelete(item.rol_id)">
+                <nb-icon icon="trash-outline"></nb-icon>
+              </button>
+
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </div>
+    </div>
+
+    <ng-template #emptyList>
+      <div class="text-center">
+        <span i18n class="text-center label">
+          No hay registros para mostrar.
+        </span>
+      </div>
+    </ng-template>
+
+    <div class="row">
+      <div class="col-md-12">
+        <nb-card>
+          <nb-card-body class="text-center">
+            <pagination-controls class="lamb-pagination" id="rolsPaginate" (pageChange)="pageChanged($event)"
+              (pageBoundsCorrection)="pageChanged($event)" [maxSize]="paginationControls.maxSize"
+              [directionLinks]="paginationControls.directionLinks" [responsive]="paginationControls.responsive"
+              previousLabel="ANTERIOR" nextLabel="SIGUIENTE" [autoHide]="paginationControls.autoHide" screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page" screenReaderCurrentLabel="Estás en la página">
+            </pagination-controls>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+
+    <!--
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th>N</th>
+                  <th>Nombre</th>
+                  <th class="text-center">Activo</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="rols.length > 0; else emptySpace" [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                <tr *ngFor="let item of rols; let i=index">
+                  <th>{{ (i+1) }}</th>
+                  <td>
+                    <a [routerLink]="['./', item.rol_id, 'manage-rol-modulos']">
+                      {{ item.nombre }}
+                    </a>
+                  </td>
+                  <td class="text-center">
+                    <span *ngIf="item.activo === 1; else desactivo">
+                      <nb-icon icon="checkmark-outline" status="success"></nb-icon>
+                      Si
+                    </span>
+                    <ng-template #desactivo>
+                      <span>
+                        <nb-icon icon="slash-outline" status="danger"></nb-icon>
+                        No
+                      </span>
+                    </ng-template>
+                  </td>
+                  <td class="text-center open-button-end">
+
+                    <button *ngIf="item.activo; else rolDesactivo" nbButton status="basic" size="tiny"
+                      nbTooltip="Desactivar rol" (click)="onActivate(item.rol_id, item.activo)">
+                      <nb-icon icon="slash-outline"></nb-icon>
+                      Desactivar
+                    </button>
+
+                    <ng-template #rolDesactivo>
+                      <button nbButton status="basic" size="tiny" nbTooltip="Activar rol"
+                        (click)="onActivate(item.rol_id, item.activo)">
+                        <nb-icon icon="checkmark-outline"></nb-icon>
+                        Activar
+                      </button>
+                    </ng-template>
+
+                    <button nbButton status="basic" size="tiny" nbTooltip="Editar rol"
+                      (click)="onEditar(item.rol_id, item.nombre)">
+                      <nb-icon icon="edit-outline"></nb-icon>
+                      Editar
+                    </button>
+
+                    <button nbButton status="basic" size="tiny" nbTooltip="Eliminar rol"
+                      (click)="onDelete(item.rol_id)">
+                      <nb-icon icon="trash-outline"></nb-icon>
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <ng-template #emptySpace>
+                <tbody [nbSpinner]="loadingSpinner" nbSpinnerStatus="info">
+                  <tr>
+                    <td colspan="4" class="text-center">Sin resultados</td>
+                  </tr>
+                </tbody>
+              </ng-template>
+            </table>
+          </div>
+        </div>
+      </div>
+    -->
+  </nb-card-body>
+</nb-card>

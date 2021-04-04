@@ -1,0 +1,102 @@
+// @import '~lamb-web-lib/lib/styles/themes/corporate';
+// @import '~lamb-web-lib/lib/styles/themes/default';
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+@import '~@nebular/theme/styles/themes/dark';
+
+// @import '~lamb-web-lib/lib/styles/themes';
+$lamb-sehs-primary: (
+    // layout-padding: 2.25rem 2.25rem 0.75rem,
+    layout-padding: 1.25rem 1.25rem 0.75rem,
+    // text-subtitle-font-size: 0.9375rem,
+    text-subtitle-font-size: 0.8375rem,
+    // card-padding: 1rem 1.25rem,
+    card-padding: 0.7rem 0.95rem,
+    // button-filled-tiny-padding: 0.25rem 0.625rem,
+    // button-filled-tiny-padding: 0.15rem 0.325rem, // modificaado achora
+    // button-filled-tiny-padding: 0.25rem 0.625rem,
+    // button-outline-tiny-padding: 0.15rem 0.325rem, // modificaado achora
+
+    // tabset-tab-padding: 1rem 2rem,
+    tabset-tab-padding: 0.5rem 1rem,
+    tabset-content-padding: 1rem 1rem,
+    tabset-content-background-color: layout-background-color,
+    // text-button-medium-font-size: 0.875rem,
+    // text-button-medium-font-size: 0.775rem, // modificaado achora
+
+    color-primary-100: #b2dfdb,
+    color-primary-200: #80cbc4,
+    color-primary-300: #4db6ac,
+    color-primary-400: #26a69a,
+    color-primary-500: #009688,
+    color-primary-600: #00897b,
+    color-primary-700: #00796b,
+    color-primary-800: #00695c,
+    color-primary-900: #004d40,
+
+    header-background-color: color-primary-500,
+    header-height: 4rem,
+    header-text-color: #ffffff,
+    list-item-padding: 0.7rem,
+    card-border-width: 0rem,
+
+);
+
+// $nb-enabled-themes: (
+    // default
+    // lamb-default, lamb-corporate,
+    // lamb-emperor, lamb-grapevine, lamb-campfire,
+    // lamb-denim, lamb-earth, lamb-earth,
+    // lamb-ming, lamb-tree-frog
+    // lamb-sehs-primary
+// );
+$nb-enabled-themes: (
+    default,
+    dark,
+    lamb-sehs-primary
+);
+
+// $nb-themes: nb-register-theme((
+    
+    
+// ), default, default);
+
+// $nb-themes: nb-register-theme((
+    
+    
+// ), , default);
+
+$nb-themes: nb-register-theme((
+    // layout-padding: 2.25rem 2.25rem 0.75rem,
+    layout-padding: 1.25rem 1.25rem 0.75rem,
+    // text-subtitle-font-size: 0.9375rem,
+    text-subtitle-font-size: 0.8375rem,
+    // card-padding: 1rem 1.25rem,
+    card-padding: 0.7rem 0.95rem,
+    // button-filled-tiny-padding: 0.25rem 0.625rem,
+    // button-filled-tiny-padding: 0.15rem 0.325rem, // comentado hace poco
+    // button-filled-tiny-padding: 0.25rem 0.625rem,
+    // button-outline-tiny-padding: 0.15rem 0.325rem, // comentado hace poco
+
+), dark, dark);
+
+$nb-themes: nb-register-theme($lamb-sehs-primary, lamb-sehs-primary, default);
+
+// $nb-themes: nb-register-theme((
+//     layout-padding: 1.25rem 1.25rem 0.75rem,
+// ), default, default);
+
+// $nb-themes: nb-register-theme($sehs-primary, lamb-sehs-primary, lamb-default);
+
+// $nb-themes: nb-register-theme((), lamb-default, lamb-default);
+// $nb-themes: nb-register-theme((), lamb-corporate, lamb-default);
+
+// $nb-themes: nb-register-theme($theme-emperor, lamb-emperor, lamb-default);
+// $nb-themes: nb-register-theme($theme-grapevine, lamb-grapevine, lamb-default);
+
+// $nb-themes: nb-register-theme($theme-campfire, lamb-campfire, lamb-default);
+// $nb-themes: nb-register-theme(map-merge($theme-denim, $denim), lamb-denim, lamb-default);
+// $nb-themes: nb-register-theme($theme-earth, lamb-earth, lamb-default);
+// $nb-themes: nb-register-theme(map-merge($theme-ming, $ming), lamb-ming, lamb-default);
+// $nb-themes: nb-register-theme($theme-tree-frog, lamb-tree-frog, lamb-default);
+

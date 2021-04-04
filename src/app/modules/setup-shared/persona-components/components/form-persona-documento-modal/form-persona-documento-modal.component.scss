@@ -1,0 +1,28 @@
+@import 'themes';
+
+nb-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+nb-radio-group {
+    display: flex;
+}
+
+::ng-deep nb-dialog-container {
+    width: 50rem !important;
+}
+
+nb-card {
+    margin-bottom: 0rem;
+}
+
+.open-button-end {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+
+.open-alert {
+    display: block;
+    margin-bottom: 0rem;
+}

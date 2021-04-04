@@ -1,0 +1,114 @@
+<nb-card [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary" status="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        EDITAR |
+      </span>
+      <span class="font-weight-light" i18n>
+        Editar el módulo: {{ nombreModulo }}
+        <!-- | <strong></strong> -->
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="editarForm">
+      <div class="form-group row">
+        <label for="title" class="col-md-4 col-form-label label text-right required">Título</label>
+        <div class="col-md-8">
+          <input type="text" nbInput fullWidth fieldSize="small" name="title" id="title" formControlName="title"
+            placeholder="Título del módulo">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="link" class="col-md-4 col-form-label label text-right required">Link</label>
+        <div class="col-md-8">
+          <input type="text" nbInput fullWidth fieldSize="small" name="link" id="link" formControlName="link"
+            placeholder="Link del módulo">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="order" class="col-md-4 col-form-label label text-right required">Orden</label>
+        <div class="col-md-2">
+          <input type="text" nbInput fullWidth fieldSize="small" name="order" id="order" formControlName="order">
+        </div>
+        <div class="col-md-6">
+          <input type="text" placeholder="Ícono" nbInput fullWidth fieldSize="small" name="icon" id="icon"
+            formControlName="icon">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="parent_id" class="col-md-4 col-form-label label text-right required">Padre</label>
+        <div class="col-md-8">
+          <nb-select placeholder="Seleccione padre" size="small" fullWidth name="parent_id" id="parent_id"
+            formControlName="parent_id">
+            <nb-option *ngFor="let item of modulos" [value]="item.modulo_id">{{ item.title }}</nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="codigo" class="col-md-4 col-form-label label text-right required">Código</label>
+        <div class="col-md-8">
+          <input type="text" nbInput fullWidth fieldSize="small" name="codigo" id="codigo" formControlName="codigo"
+            placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="group" class="col-md-4 col-form-label label text-right required">Es grupo</label>
+        <div class="col-md-8">
+          <nb-radio-group formControlName="group" name="group" status="warning">
+            <nb-radio [value]="true">Si</nb-radio>
+            <nb-radio [value]="false">No</nb-radio>
+          </nb-radio-group>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="home" class="col-md-4 col-form-label label text-right required">Es Home</label>
+        <div class="col-md-8">
+          <nb-radio-group formControlName="home" name="home" status="warning">
+            <nb-radio [value]="true">Si</nb-radio>
+            <nb-radio [value]="false">No</nb-radio>
+          </nb-radio-group>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="is_mobile" class="col-md-4 col-form-label label text-right required">Es Mobile</label>
+        <div class="col-md-8">
+          <nb-radio-group formControlName="is_mobile" name="is_mobile" status="warning">
+            <nb-radio [value]="true">Si</nb-radio>
+            <nb-radio [value]="false">No</nb-radio>
+          </nb-radio-group>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="activo" class="col-md-4 col-form-label label text-right required">Activo</label>
+        <div class="col-md-8">
+          <nb-radio-group formControlName="activo" name="activo" status="warning">
+            <nb-radio [value]="true">Si</nb-radio>
+            <nb-radio [value]="false">No</nb-radio>
+          </nb-radio-group>
+        </div>
+      </div>
+    </form>
+
+    <nb-alert accent="warning" class="open-alert">
+      Ligrería para íconos: <a class="open-link caption-2" target="_blank" href="https://akveo.github.io/eva-icons">Eva
+        Icons</a>
+    </nb-alert>
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cancelar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+
+  </nb-card-footer>
+</nb-card>

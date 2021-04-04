@@ -1,0 +1,58 @@
+<nb-card [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary"  status="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        ROLES |
+      </span>
+      <span class="font-weight-light" i18n>
+        Roles asignados el usuario
+      </span>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <div class="table">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Asignado</th>
+            <th>N</th>
+            <th>Rol</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="rols.length > 0; else rolesEmpty">
+          <tr *ngFor="let item of rols; let i=index">
+            <td>
+              <nb-checkbox status="warning" [(ngModel)]="item.asignado"></nb-checkbox>
+            </td>
+            <td>{{ (i+1) }}</td>
+            <td>{{ item.nombre }}</td>
+          </tr>
+        </tbody>
+        <ng-template #rolesEmpty>
+          <tbody>
+            <tr>
+              <td colspan="3" class="text-center"></td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+
+  </nb-card-body>
+  <nb-card-footer class="text-right open-button-end">
+    <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cancelar
+    </button>
+
+    <button nbButton status="primary" size="small" (click)="onSave()">
+      <nb-icon icon="save-outline"></nb-icon>
+      Guardar
+    </button>
+
+  </nb-card-footer>
+</nb-card>

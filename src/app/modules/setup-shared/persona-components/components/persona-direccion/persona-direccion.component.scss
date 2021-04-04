@@ -1,0 +1,36 @@
+@import 'themes';
+
+nb-accordion {
+    box-shadow: none;
+}
+nb-radio-group {
+    display: flex;
+}
+::ng-deep nb-select .select-button {
+    min-width: 12rem !important;
+}
+.open-button-end {
+    button {
+        margin-right: 0.3rem;
+    }
+}
+
+.open-empty-space {
+    display: initial;
+}
+
+nb-list-item {
+    padding: 0.2rem;
+    .open-doc-small-name {
+        // background-color: nb-theme(layout-background-color);
+        color: nb-theme(header-background-color);
+        // color: nb-theme(header-text-color);
+    }
+    &:hover {
+        background-color: nb-theme(list-item-divider-color);
+    }
+    border-radius: 20px;
+}
+nb-checkbox:not(:only-child) {
+    margin-right: 1.5rem;
+}

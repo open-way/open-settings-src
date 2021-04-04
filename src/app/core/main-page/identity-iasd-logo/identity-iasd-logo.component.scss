@@ -1,0 +1,21 @@
+@import 'themes';
+@include nb-install-component() {
+  .logo-iasd {
+    position: fixed;
+    width: 7.5rem;
+    z-index: 0.2;
+    bottom: 0.1rem;
+  }
+  
+  .right {
+    right: 0.1rem;
+  }
+  
+  .left {
+    left: 0.1rem;
+  }
+  
+  .icon {
+      // fill: nb-theme(color-primary);
+  }
+}

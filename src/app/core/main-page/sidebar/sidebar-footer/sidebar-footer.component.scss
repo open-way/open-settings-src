@@ -1,0 +1,44 @@
+@import 'themes';
+
+@include nb-install-component() {
+  // font-size: nb-theme(font-size-sm);
+  // color:  nb-theme(header-fg);
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: nb-theme(select-text-font-family);
+  font-weight: nb-theme(select-text-font-weight);
+  .info-version {
+    order: 2;
+    margin: auto;
+  }
+  img {
+    order: 1;
+    width: 2.6rem;
+    &.black-and-white {
+      display: none;
+    }
+    &.black {
+      display: block;
+    }
+    @include nb-for-theme(default) {
+      &.black-and-white {
+        display: none;
+      }
+      
+      &.black {
+        display: block;
+      }
+    }
+    @include nb-for-theme(corporate) {
+      &.black-and-white {
+        display: none;
+      }
+      
+      &.black {
+        display: block;
+      }
+    }
+  }
+}

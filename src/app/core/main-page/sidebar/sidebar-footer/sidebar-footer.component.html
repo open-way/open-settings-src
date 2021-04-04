@@ -1,0 +1,11 @@
+<img class="black-and-white" src="assets/logos/iasd-logo-black-and-white.svg" alt="IASD">
+<img class="black" src="assets/logos/iasd-logo-black.svg" alt="IASD">
+<div class="info-version text-left">
+    &copy; {{year}} <span class="dev-team"> - {{ devTeam }}</span>
+    <br class="d-block d-sm-none">
+    <br>
+    <a routerLink="lamb" title="Mostrar registro de cambios">
+        <i class="fa fa-rocket lamb-icon"></i> v{{ version }}
+        <span *ngIf="!isProd">{{ envName }}</span>
+    </a>
+</div>

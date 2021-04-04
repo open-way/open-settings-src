@@ -1,0 +1,10 @@
+// @import './themes';
+@import './overrides/ngb-typeahead-theme';
+@import './overrides/table-theme';
+@import './overrides/form-label-required-theme';
+
+@mixin lamb-overrides-theme() {
+  @include lamb-table-theme();
+  @include ngb-typeahead-theme();
+  @include lamb-label-required-theme();
+}

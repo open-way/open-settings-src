@@ -1,0 +1,50 @@
+<nb-card status="basic" [nbSpinner]="loadingSpinnerSave" nbSpinnerStatus="primary">
+  <nb-card-header>
+    <div class="text-center">
+      <span i18n>
+        <!-- CAMBIO DE CONTRASEÑA -->
+      </span>
+      <!-- <span i18n>
+        CAMBIO DE CONTRASEÑA
+      </span>
+      <span class="font-weight-light" i18n>
+        Registrar un nuevo documento
+      </span> -->
+      <h5 i18n>Cambiar Email</h5>
+    </div>
+    <div>
+      <nb-icon icon="close-outline" (click)="onClose()" style="cursor: pointer"></nb-icon>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <div class="form-group">
+      <span i18n>
+        <!-- <small i18n> -->
+        Recuerde que este email será el que usará el usuario para acceder al sistema. Le llegará un correo con el enlace
+        de verificación
+        de la cuenta.
+        <!-- </small> -->
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="label required">Email</label>
+      <input type="text" nbInput [formControl]="controlEmail" fullWidth fieldSize="small" name="email" id="email">
+    </div>
+
+  </nb-card-body>
+  <nb-card-footer class="text-center open-button-end">
+
+    <!-- <button nbButton status="basic" size="small" (click)="onClose()">
+      <nb-icon icon="close-outline"></nb-icon>
+      Cerrar
+    </button> -->
+
+    <button nbButton status="primary" size="small" (click)="onConfirm()">
+      <nb-icon icon="checkmark-outline"></nb-icon>
+      Confirmar y enviar correo de confirmación
+    </button>
+
+  </nb-card-footer>
+</nb-card>
